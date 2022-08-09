@@ -1,0 +1,13 @@
+# Linters configurations: https://golangci-lint.run/usage/configuration/#linters-configuration
+run:
+  # The default concurrency value is the number of available CPU.
+  concurrency: 1
+
+# A list of supported linters: https://golangci-lint.run/usage/linters/
+linters:
+  disable:
+    - dogsled # staticcheck .etc
+    - ineffassign
+    - gosimple
+    - deadcode
+    - unused

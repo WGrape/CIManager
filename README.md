@@ -1,2 +1,2 @@
 # CIManager
-An efficient tool for CI management of multiple projects / 一个用于多个项目CI管理的高效工具
+An efficient tool for managing CI of multiple gitlab golang projects / 一个适用管理多个gitlab golang项目CI的高效工具

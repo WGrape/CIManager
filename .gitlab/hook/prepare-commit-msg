@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# You need do as follows if you want to use git commit hook.
+# cp .gitlab/hook/prepare-commit-msg ./.git/hooks
+# chmod +x ./.git/hooks/prepare-commit-msg
+ROOT_DIR=$(dirname $(dirname $(dirname ${BASH_SOURCE[0]})))
+cd $ROOT_DIR
+
+# Run start
+bash .gitlab/mock_ci.sh

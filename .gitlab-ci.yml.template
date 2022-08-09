@@ -1,0 +1,66 @@
+# could not use go:1.13
+# Using Docker executor with image go:1.13 ...
+# Pulling docker image go:1.13 ...
+# ERROR: Job failed: Error response from daemon: pull access denied for go, repository does not exist or may require 'docker login': denied: requested access to the resource is denied (executor_docker.go:188:3s)
+# Variables: https://docs.gitlab.com/ee/ci/variables/index.html
+image: golang:1.17
+variables:
+  GOPATH: /go
+  PROJECT_NAME: {{PROJECT_NAME}}
+  PROJECT_ID: {{PROJECT_ID}}
+  PROJECT_PATH: {{PROJECT_PATH}}
+  DING_NOTICE_KEYWORD: {{DING_NOTICE_KEYWORD}}
+  GITLAB_API_TOKEN: {{GITLAB_API_TOKEN}}
+  GITLAB_HOST: {{GITLAB_HOST}}
+  DING_ACCESS_TOKEN: {{DING_ACCESS_TOKEN}}
+
+before_script:
+  - echo '====== CI Stage Start Running ========='
+  - bash .gitlab/print_env.sh
+
+after_script:
+  - echo '====== CI Stage Stopped Successfully ========='
+
+stages:
+  - detect_project
+  - godep_check
+  - config_check
+  - apidoc_gen
+
+detect_project:
+  stage: detect_project
+  script:
+    - bash .gitlab/pre_install.sh
+    - bash .gitlab/check_code.sh
+    - bash .gitlab/unit_test.sh
+  only:
+    - merge_requests
+    - master
+    - test
+
+godep_check:
+  stage: godep_check
+  script:
+    - bash .gitlab/godep_check.sh
+  only:
+    - merge_requests
+    - master
+    - test
+
+config_check:
+  stage: config_check
+  script:
+    - bash .gitlab/config_check.sh
+  only:
+    - merge_requests
+    - master
+    - test
+
+apidoc_gen:
+  stage: apidoc_gen
+  script:
+    - bash .gitlab/pre_install.sh
+    - bash .gitlab/apidoc_gen.sh
+  only:
+    - merge_requests
+    - test
