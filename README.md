@@ -44,7 +44,7 @@ An efficient tool for managing CI of multiple gitlab golang projects / 一个适
 ![image](https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png)
 
 #### (1) 一次编写
-只维护一套通用的CI代码```CIManager````
+只维护一套通用的CI代码```CIManager```
 
 #### (2) 到处运行
 每个代码库只需要有自己的一个```.gitlab-ci.yml```文件，且这个文件内容会保持精简而通用，如下所示
