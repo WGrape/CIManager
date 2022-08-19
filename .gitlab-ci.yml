@@ -1,0 +1,11 @@
+image: golang:1.17
+variables:
+  PROJECT_NAME: {{PROJECT_NAME}}
+
+before_script:
+  - echo '====== CI Start Running ========='
+  - bash .gitlab/print_env.sh
+  - cd /temp && git clone git.xxx.com/xxx/CIManager && cd CIManager && cp -r . /yourproject && cd /yourproject && bash remote_mgr.sh runci
+
+after_script:
+  - echo '====== CI Stopped Successfully ========='
