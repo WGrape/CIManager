@@ -39,7 +39,7 @@ CIManager:
 ### 3、CIManager开始工作
 当您每次提交项目的时候，在runner机器上都会运行CIManager，如下图所示
 
-<img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png">
+<img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png" height="600px">
 
 ## 三、私有化部署
 
