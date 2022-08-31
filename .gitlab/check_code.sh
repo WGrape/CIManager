@@ -10,8 +10,10 @@ PrintEnv
 which "$(go env GOPATH)/bin/golangci-lint" >/dev/null 2>&1
 if [ $? -ne 0 ]; then
   echo -e "2. command golangci-lint not exist, installing it ..."
-  echo -e "2.1 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2"
-  curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2
+  echo -e "2.1 git clone https://github.com/WGrape/cache.git && cd cache/golangci-lint && chmod 777 golangci-lint && cp golangci-lint $(go env GOPATH)/bin/ && cd $currentDir && rm -rf ./cache && ls"
+  git clone https://github.com/WGrape/cache.git && cd cache/golangci-lint && chmod 777 golangci-lint && cp golangci-lint $(go env GOPATH)/bin/ && cd $currentDir && rm -rf ./cache && ls
+  # echo -e "2.1 curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2"
+  # curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2
 else
   echo -e "2. golangci-lint is installed"
 fi
