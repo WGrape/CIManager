@@ -1,40 +1,44 @@
 # CIManager
-An efficient tool for managing CI of multiple gitlab golang projects / 一个适用管理多个gitlab golang项目CI的高效工
+A lightweight open source framework for efficiently managing common CI for multiple gitlab golang projects / 一个用于高效管理多个```gitlab golang```项目通用CI的轻量级开源框架
 
 ## 一、介绍
-本项目背景是解决多项目下的CI管理问题，为了解决这个问题，本方案设计并实现了多种方案。详细背景介绍和解决方案请见文章 [《多项目下CI管理方案的设计与实现》](https://github.com/WGrape/Blog/issues/249) 。
+在微服务下，每一个项目仓库都需要维护独立的CI/CD，一旦CI/CD有设计升级或变更，所有仓库都需要配合做联动性调整，维护成本极高。为了解决这个问题，曾经提出过一种方案，详细请见文章 [《多项目下CI管理方案的设计与实现》](https://github.com/WGrape/Blog/issues/249) 。
 
-由于业务各不相同，本项目无法提供一种完全开箱可用的通用方案。所以只能基于设计的方案，搭建出理想下```CIManager```项目的骨架，具体逻辑内容需要自己实现。
+本项目是基于文章中的```远程管理```方案设计而实现的一个用于高效管理多个```gitlab golang```项目通用CI的轻量级开源框架，它不但完全开箱即用，而且方便定制化开发与扩展。
 
-## 二、下载
-通过Git方式clone下载完后，将目录中的各个文件自行修改即可。
+## 二、如何使用
 
-```bash
-git clone https://github.com/WGrape/CIManager.git
-cd CIManager
-```
-
-## 三、使用
-
-### 1、本地管理
-如果选择本地管理方式，通过以下命令把```CIManager```通用CI项目中的各个文件拷贝到不同项目中即可
-
-```bash
-bash local_mgr.sh fastcopy ${sourceDir} ${targetDir} 
-```
-
-### 2、远程管理
-如果选择远程管理方式，只需要各个项目下使用一个类似如下的```.gitlab-ci.yml```文件即可
+### 1、为您的项目添加.gitlab-ci.yml文件
+在您的各个项目下添加一个```.gitlab-ci.yml```配置文件，它的内容如下所示
 
 ```yaml
 image: golang:1.17
-variables:
-  PROJECT_NAME: {{PROJECT_NAME}}
 
 before_script:
-  - echo '====== CI Start Running ========='
-  - cd /temp && git clone git.xxx.com/xxx/CIManager && cd CIManager && cp -r . /yourproject && cd /yourproject && bash remote_mgr.sh runci
+  - echo '====== CIManager Start Running ========='
+  - git clone https://github.com/WGrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh
 
 after_script:
-  - echo '====== CI Stopped Successfully ========='
+  - echo '====== CIManager Stopped Successfully ========='
 ```
+
+### 2、正常提交您的项目
+如往常一样，正常编写并提交您的项目即可
+
+### 3、CIManager开始工作
+当您每次提交项目的时候，在runner机器上都会运行CIManager，如下图所示
+
+<img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png">
+
+## 三、私有化部署
+
+### 1、下载项目
+
+无需任务复杂安装过程，直接通过Git方式clone到本地即可。
+
+```bash
+git clone https://github.com/WGrape/CIManager.git
+```
+
+### 2、部署至私有gitlab
+如果您不需要对```CIManager```框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的```.gitlab-ci.yml```配置文件中的```https://github.com/WGrape/CIManager.git```替换为您私有仓库地址即可。
