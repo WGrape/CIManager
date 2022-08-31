@@ -2,11 +2,15 @@
 A lightweight open source framework for efficiently managing common CI for multiple gitlab golang projects / 一个用于高效管理多个```gitlab golang```项目通用CI的轻量级开源框架
 
 ## 一、介绍
-在微服务下，每一个项目仓库都需要维护独立的CI/CD，一旦CI/CD有设计升级或变更，所有仓库都需要配合做联动性调整，维护成本极高。为了解决这个问题，曾经提出过一种方案，详细请见文章 [《多项目下CI管理方案的设计与实现》](https://github.com/WGrape/Blog/issues/249) 。
+在微服务下，每一个项目仓库都需要维护独立的CI/CD，一旦CI/CD有设计升级或变更，所有仓库都需要配合做联动性调整，维护成本极高。
+
+为了解决这个问题，曾经提出过一种方案，详细请见文章 [《多项目下CI管理方案的设计与实现》](https://github.com/WGrape/Blog/issues/249) 。
 
 本项目是基于文章中的```远程管理```方案设计而实现的一个用于高效管理多个```gitlab golang```项目通用CI的轻量级开源框架，它不但完全开箱即用，而且方便定制化开发与扩展。
 
 ## 二、如何使用
+
+> 为了方便您快速应用，可以参考 [apimock-example](https://jihulab.com/WGrape/apimock-example/-/jobs) 项目是如何使用```CIManager```的
 
 ### 1、为您的项目添加.gitlab-ci.yml文件
 在您的各个项目下添加一个```.gitlab-ci.yml```配置文件，它的内容如下所示
@@ -16,10 +20,17 @@ image: golang:1.17
 
 before_script:
   - echo '====== CIManager Start Running ========='
-  - git clone https://github.com/WGrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh
 
 after_script:
   - echo '====== CIManager Stopped Successfully ========='
+
+stages:
+  - CIManager
+
+CIManager:
+  stage: CIManager
+  script:
+    - git clone https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh
 ```
 
 ### 2、正常提交您的项目
