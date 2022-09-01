@@ -1,6 +1,6 @@
 SendFailureNotice(){
   if [ "$CI_COMMIT_REF_NAME" == "$CI_DEFAULT_BRANCH" ]; then
-      actionName="请求合入master"
+      actionName="请求合入$CI_COMMIT_REF_NAME"
   elif [ "$CI_COMMIT_REF_NAME" == "test" ]; then
       actionName="请求合入test"
   else
