@@ -6,8 +6,19 @@ PrintEnv
 
 echo -e "2. Check the variables"
 if [ "$UNIT_TEST_TRIGGER_CMD" == "" ] ; then
-  FAILURE_REASON="预检查失败(pre_check.sh)"
-  echo -e " >>>>>>>>>>>> Sorry, check variables failed <<<<<<<<<<<<"
+  FAILURE_REASON="Failed to run pre_check.sh: the variables UNIT_TEST_TRIGGER_CMD empty"
+  SendFailureNotice
+  exit 1
+fi
+
+if [ "$APIDOC_TRIGGER_CMD" == "" ] ; then
+  FAILURE_REASON="Failed to run pre_check.sh: the variables APIDOC_TRIGGER_CMD empty"
+  SendFailureNotice
+  exit 1
+fi
+
+if [ "$APIDOC_FILE" == "" ] ; then
+  FAILURE_REASON="Failed to run pre_check.sh: the variables APIDOC_FILE empty"
   SendFailureNotice
   exit 1
 fi

@@ -8,8 +8,7 @@ PrintEnv
 echo "2. Trigger the unit test"
 eval $UNIT_TEST_TRIGGER_CMD
 if [ $? -ne 0 ]; then
-  FAILURE_REASON="单元测试失败(unit_test.sh)"
-  echo -e " >>>>>>>>>>>> Sorry, unit test failed <<<<<<<<<<<<"
+  FAILURE_REASON="Failed to run unit_test.sh: test failed"
   SendFailureNotice
   exit 1
 fi
