@@ -10,7 +10,7 @@ A lightweight open source framework for efficiently managing common CI for multi
 
 # 二、如何使用
 
-> 为了方便您快速应用，可以参考 [apimock-example](https://jihulab.com/WGrape/apimock-example/-/jobs/4354428) 项目是如何使用```CIManager```的
+> 为了方便您快速应用，可以参考 [apimock-example](https://jihulab.com/WGrape/apimock-example/) 项目是如何使用```CIManager```的
 
 ## 1、为您的项目添加.gitlab-ci.yml文件
 在您的各个项目下添加一个```.gitlab-ci.yml```配置文件，它的内容如下所示
@@ -37,7 +37,7 @@ CIManager:
 如往常一样，正常编写并提交您的项目即可
 
 ## 3、CIManager开始工作
-当您每次提交项目的时候，在runner机器上都会运行CIManager，如下图所示
+当您每次提交项目的时候，在runner机器上都会运行CIManager，它的底层运行原理如下图所示，详细运行过程可以 [查看这里](https://jihulab.com/WGrape/apimock-example/-/jobs/4354428)
 
 <img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png" height="600px">
 
