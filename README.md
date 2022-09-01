@@ -53,3 +53,16 @@ git clone https://github.com/WGrape/CIManager.git
 
 ### 2、部署至私有gitlab
 如果您不需要对```CIManager```框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的```.gitlab-ci.yml```配置文件中的```https://github.com/WGrape/CIManager.git```替换为您私有仓库地址即可。
+
+## 四、帮助手册
+
+### 1、如何安装golangci-lint
+
+```bash
+curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2
+```
+
+### 2、更多文档
+
+- [Gitlab Wiki API](https://docs.gitlab.cn/jh/api/wikis.html)
+- [极狐WikiAPI](https://docs.gitlab.cn/jh/api/wikis.html)

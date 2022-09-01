@@ -1,37 +1,37 @@
 bash .gitlab/pre_check.sh
 if [ $? -ne 0 ]; then
   echo -e "
-CIManager执行结果: 未通过(pre_check.sh)"
+CIManager Running Result: pre_check.sh failed"
   exit 1
 fi
 
 bash .gitlab/pre_install.sh
 if [ $? -ne 0 ]; then
   echo -e "
-CIManager执行结果: 未通过(pre_install.sh)"
+CIManager Running Result: pre_install.sh failed"
   exit 1
 fi
 
 bash ./.gitlab/check_code.sh
 if [ $? -ne 0 ]; then
   echo -e "
-CIManager执行结果: 未通过(check_code.sh)"
+CIManager Running Result: check_code.sh failed"
   exit 1
 fi
 
 bash ./.gitlab/unit_test.sh
 if [ $? -ne 0 ]; then
   echo -e "
-CIManager执行结果: 未通过(unit_test.sh)"
+CIManager Running Result: unit_test.sh failed"
   exit 1
 fi
 
 bash ./.gitlab/apidoc_gen.sh
 if [ $? -ne 0 ]; then
   echo -e "
-CIManager执行结果: 未通过(apidoc_gen.sh)"
+CIManager Running Result: apidoc_gen.sh failed"
   exit 1
 fi
 
 echo -e "
-CIManager执行结果: 通过"
+CIManager Running Result: success"
