@@ -97,7 +97,10 @@ git clone https://github.com/WGrape/CIManager.git
 ```
 
 ## 2、部署至私有gitlab
-如果您不需要对```CIManager```框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的```.gitlab-ci.yml```配置文件中的```https://github.com/WGrape/CIManager.git```替换为您私有仓库地址即可。
+如果您不需要对```CIManager```框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的```.gitlab-ci.yml```配置文件中的```https://github.com/WGrape/CIManager.git```替换为CIManager在您私有仓库中的地址即可。
+
+## 3、扩展开发
+如果您需要对```CIManager```框架进行扩展开发，比如新增配置检查、依赖检查等阶段（Stage），直接修改源码即可。具体请参考[设计原理文档](./doc/design.md)
 
 # 五、帮助文档
 如果在您使用过程中遇到问题，请参考[帮助文档](./doc/help.md)
