@@ -20,6 +20,7 @@ fi
 
 # 3. Check the golangci-lint version
 echo "3." $($(go env GOPATH)/bin/golangci-lint --version)
+$(go env GOPATH)/bin/golangci-lint --version
 
 # 4. Run the golangci-lint
 $(go env GOPATH)/bin/golangci-lint run --timeout=10m

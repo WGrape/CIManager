@@ -1,3 +1,10 @@
+bash .gitlab/pre_check.sh
+if [ $? -ne 0 ]; then
+  echo -e "
+CIManager执行结果: 未通过(pre_check.sh)"
+  exit 1
+fi
+
 bash .gitlab/pre_install.sh
 if [ $? -ne 0 ]; then
   echo -e "
@@ -16,20 +23,6 @@ bash ./.gitlab/unit_test.sh
 if [ $? -ne 0 ]; then
   echo -e "
 CIManager执行结果: 未通过(unit_test.sh)"
-  exit 1
-fi
-
-bash ./.gitlab/godep_check.sh
-if [ $? -ne 0 ]; then
-  echo -e "
-CIManager执行结果: 未通过(godep_check.sh)"
-  exit 1
-fi
-
-bash ./.gitlab/config_check.sh
-if [ $? -ne 0 ]; then
-  echo -e "
-CIManager执行结果: 未通过(config_check.sh)"
   exit 1
 fi
 
