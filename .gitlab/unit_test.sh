@@ -6,7 +6,7 @@ PrintEnv
 
 # 2. Test the directory of dao
 echo -e "2. Trigger the unit test"
-if [ "$UNIT_TEST_TRIGGER_CMD" != "" ]; then
+if [ "${UNIT_TEST_TRIGGER_CMD}" != "" ]; then
   eval $UNIT_TEST_TRIGGER_CMD
   if [ $? -ne 0 ]; then
     FAILURE_REASON="Failed to run unit_test.sh: test failed"
