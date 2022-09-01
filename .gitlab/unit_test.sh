@@ -1,4 +1,3 @@
-cd $PROJECT_PATH
 currentDir=$(pwd)
 . $currentDir/.gitlab/include/function.sh
 echo -e "------------ The script unit_test.sh is running ------------"
