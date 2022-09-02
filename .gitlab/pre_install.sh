@@ -6,7 +6,8 @@ PrintEnv
 
 # Complete the installation of all dependencies
 echo -e "2. apt-get update && apt-get install -y curl"
-apt-get update
-apt-get install -y curl
+#apt-get update
+#apt-get install -y curl
+apk add curl
 
 echo -e "------------ The script pre_install.sh is stopped ------------"
