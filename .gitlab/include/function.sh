@@ -1,4 +1,5 @@
 PrintEnv(){
+  echo -e "CI_BUILDS_DIR=${CI_BUILDS_DIR}"
   echo -e "pwd="$(pwd)
   echo -e "ls="$(ls)
 }
