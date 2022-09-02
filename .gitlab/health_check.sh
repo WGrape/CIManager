@@ -11,7 +11,7 @@ if [ "${HEALTH_CHECK_TRIGGER_CMD}" != "" ]; then
     do
         ((i++))
 
-        res=$(eval $UNIT_TEST_TRIGGER_CMD)
+        res=$(eval $HEALTH_CHECK_TRIGGER_CMD)
         if [ "${res}" == "${HEALTH_CHECK_SUCCESS}" ]; then
             echo -e "health check success"
             break
