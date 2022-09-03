@@ -1,5 +1,18 @@
-# CIManager
-A lightweight open source framework for efficiently managing common CI for multiple gitlab golang projects / 一个用于高效管理多个```gitlab golang```项目通用CI的轻量级开源框架
+<p align="center">
+<img width="321" alt="image" src="https://user-images.githubusercontent.com/35942268/188274226-5ccdfb75-5bcb-4d90-895f-4190d64ae22d.png">
+</p>
+
+<div align="center">
+<p>A lightweight open source framework for efficiently managing common CI for multiple gitlab golang projects</p>
+<p>一个用于高效管理多个gitlab golang项目通用CI的轻量级开源框架</p>
+</div>
+
+<p align="center">
+    <img src="https://img.shields.io/badge/Language-Shell-blue.svg">
+    <img src="https://img.shields.io/badge/Release-1.1.0-blue.svg">
+    <img src="https://img.shields.io/badge/Document-中文-orange.svg">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg">   
+</p>
 
 - [一、介绍](#1)
 - [二、快速上手](#2)
