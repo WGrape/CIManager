@@ -1,4 +1,7 @@
 PrintEnv(){
+  echo -e "uname －a="$(uname －a)
+  echo -e "cat /proc/version="$(cat /proc/version)
+  echo -e "lsb_release -a="$(lsb_release -a)
   echo -e "CI_BUILDS_DIR=${CI_BUILDS_DIR}"
   echo -e "pwd="$(pwd)
   echo -e "ls="$(ls)
