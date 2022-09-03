@@ -2,11 +2,11 @@
 A lightweight open source framework for efficiently managing common CI for multiple gitlab golang projects / 一个用于高效管理多个```gitlab golang```项目通用CI的轻量级开源框架
 
 - [一、介绍](#1)
-- [二、如何使用](#2)
+- [二、快速上手](#2)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1、为您的项目添加.gitlab-ci.yml文件](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2、正常提交您的项目](#22)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3、CIManager开始工作](#23)
-- [三、功能配置](#3)
+- [三、CI/CD配置](#3)
 - [四、私有化部署](#4)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1、下载项目](#41)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2、部署至私有gitlab](#42)
@@ -20,7 +20,7 @@ A lightweight open source framework for efficiently managing common CI for multi
 
 本项目是基于文章中的```远程管理```方案设计而实现的一个用于高效管理多个```gitlab golang```项目通用CI的轻量级开源框架，它不但完全开箱即用，而且方便定制化开发与扩展。
 
-## <span id="2">二、如何使用</span>
+## <span id="2">二、快速上手</span>
 
 > 为了方便您快速应用，可以参考 [apimock-example](https://jihulab.com/WGrape/apimock-example/) 项目是如何使用```CIManager```的
 
@@ -49,12 +49,18 @@ CIManager:
 添加完之后，如往常一样，正常编写并提交您的项目即可
 
 ### <span id="23">3、CIManager开始工作</span>
-当您每次提交项目的时候，在runner机器上都会运行CIManager，它的底层运行原理如下图所示，详细运行过程可以 [查看这里](https://jihulab.com/WGrape/apimock-example/-/jobs/4354428)
+当您每次提交项目的时候，在runner机器上都会运行CIManager，它的底层[运行原理](https://github.com/WGrape/Blog/issues/249)如下图所示，详细运行过程可以 [查看这里](https://jihulab.com/WGrape/apimock-example/-/jobs/4354428)
 
 <img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png" height="600px">
 
-## <span id="3">三、功能配置</span>
-在 [apimock-example](https://jihulab.com/WGrape/apimock-example/-/blob/main/.gitlab-ci.yml) 项目例子中，会发现它定义了一系列的```variables```变量，它们正是用于实现```CI/CD```自定义功能配置的变量。在[设计原理-功能配置](./doc/design.md#1)问中会详细介绍CIManager支持的所有变量。
+## <span id="3">三、CI/CD配置</span>
+基于低耦合、易扩展、高效率的思想，CIManager框架内部集成了非常丰富的Stage，通过不同Stage的组合构成了一个完整的集成和发布流程。
+
+<img width="491" alt="image" src="https://user-images.githubusercontent.com/35942268/188272087-7e502181-4c4e-4342-8124-7dae22ddbfd9.png">
+
+那么是如何实现的呢？在 [apimock-example](https://jihulab.com/WGrape/apimock-example/-/blob/main/.gitlab-ci.yml) 项目例子中，会发现定义了大量的```variables```变量，正是这些变量被应用于不同的Stage，才实现了强大丰富的```CI/CD```功能。
+
+默认情况下，即使不配置任何变量，也可以正常使用部分功能。如果您想要了解更多```CI/CD```的配置，请[查看文档](./doc/README.md#1)
 
 ## <span id="4">四、私有化部署</span>
 
@@ -72,7 +78,7 @@ git clone https://github.com/WGrape/CIManager.git
 ### <span id="43">3、扩展开发</span>
 本框架是基于```gitlab golang```开发的框架，如果您项目中使用的是其他git仓库或语言，那么可以在```CIManager```框架基础上进行扩展开发。
 
-您当然也可以新增配置检查、依赖检查等加强```CI/CD```功能的阶段（Stage）操作，直接修改源码即可。具体请参考[设计原理文档](./doc/design.md)
+您当然也可以新增配置检查、依赖检查等加强```CI/CD```的阶段（Stage）操作，直接修改源码即可。具体请参考[设计原理文档](./doc/design.md)
 
-## <span id="5">五、帮助文档</span>
-如果在您使用过程中遇到问题，请参考[帮助文档](./doc/help.md)
+## <span id="5">五、问题与解答</span>
+如果在您使用过程中遇到问题，可以查看[官方文档](./doc/README.md)，或在```ISSUE```中提问。
