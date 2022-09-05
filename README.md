@@ -25,6 +25,7 @@
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2、部署至私有gitlab](#42)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3、扩展开发](#43)
 - [五、帮助文档](#5)
+- [六、贡献榜](#6)
 
 ## <span id="1">一、介绍</span>
 在微服务下，每一个项目仓库都需要维护独立的```CI/CD```，一旦```CI/CD```有设计升级或变更，所有仓库都需要配合做联动性调整，维护成本极高。
@@ -95,3 +96,7 @@ git clone https://github.com/WGrape/CIManager.git
 
 ## <span id="5">五、问题与解答</span>
 如果在您使用过程中遇到问题，可以查看[官方文档](./doc/README.md)，或在```ISSUE```中提问。
+
+## <span id="6">六、贡献榜</span>
+
+<img src="https://contrib.rocks/image?repo=wgrape/cimanager" >
