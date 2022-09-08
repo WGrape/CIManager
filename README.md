@@ -4,7 +4,7 @@
 
 <div align="center">
 <p>A lightweight open source framework for efficiently managing common CI for multiple gitlab golang projects</p>
-<p>一个用于高效管理多个gitlab golang项目通用CI的轻量级开源框架</p>
+<p>一个用于高效管理多个gitlab golang项目通用CI的轻量级开源框架 | <a href="https://wgrape.github.io/CIManager/">官方网站</a></p>
 </div>
 
 <p align="center">
