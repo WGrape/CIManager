@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CIManager</title>
+
+    <style>* {
+        margin: 0;
+    }
+
+    body {
+        margin-bottom: 20px;
+    }
+
+    .fs-13 {
+        font-size: 13px;
+    }
+
+    h4 {
+        margin: 20px auto 10px auto;
+        padding-bottom: 8px;
+        margin-bottom: 0;
+    }
+
+    h3{
+    }
+
+    td {
+        font-size: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+        padding: 15px 10px;
+        word-wrap: break-word;
+        word-break: normal;
+    }
+
+    p {
+        /*height: 30px;*/
+        line-height: 30px;
+        margin: 0;
+        color:#666;
+        padding: 10px 0;
+        text-align: justify;
+    }
+
+    pre{
+        background: #eee;
+        padding: 10px 15px 10px 15px;
+        margin-bottom: 20px;
+    }
+
+    #View-introduce-body,#View-deploy-body,#View-help-body{
+        margin-top: 20px;
+    }
+    </style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-width: 1420px;
+        }
+
+        iframe {
+            border: none;
+            box-shadow: none;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        li.timeline {
+            border-left: 1px solid #ccc;
+            padding: 0 10px 30px 30px;
+            width: 1100px;
+        }
+
+        li.timeline:before {
+            content: " ";
+            width: 15px;
+            height: 15px;
+            background: #5f71d5;
+            color: #000;
+            border-radius: 20px;
+            display: inline-block;
+            margin-left: -38px;
+        }
+
+        input[type='text'] {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 220px;
+            height: 30px;
+            line-height: 30px;
+            padding: 5px 10px;
+            outline: none;
+        }
+
+        input[type='text'].input-logid {
+            width: 400px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: 0;
+            color: #555;
+            padding-left: 15px;
+            height: 25px;
+            line-height: 25px;
+        }
+
+        input[type='radio'] {
+            cursor: pointer;
+        }
+
+        button {
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        label {
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        #Head {
+            /*background: #515faf;*/
+            color: #FFF;
+            text-align: left;
+            padding: 0 15px;
+            /*height: 78px;*/
+            /*line-height: 78px;*/
+            height: 100px;
+            line-height: 100px;
+            border-bottom: 10px solid #eee;
+        }
+
+        #Dashboard {
+            display: inline-block;
+            width: 180px;
+            float: left;
+            /*background: #202020;*/
+            background: #2c3772;
+            border-right: 10px solid #eee;
+            margin-top: -10px;
+        }
+
+        #View {
+            display: inline-block;
+            width: 1350px;
+            padding: 0 0 20px 0;
+        }
+
+        #Foot {
+            background: #eee;
+            border-top: 1px solid #ddd;
+            padding: 20px 0;
+        }
+
+        #Loading {
+            display: none;
+        }
+
+        .no_a {
+            text-decoration: none;
+            color: #FFF;
+        }
+
+        .bb {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .pb-10 {
+            padding-bottom: 10px;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .fs-13 {
+            font-size: 13px;
+        }
+
+        .fs-14 {
+            font-size: 14px;
+        }
+
+        .fs-15 {
+            font-size: 15px;
+        }
+
+        .fs-16 {
+            font-size: 16px;
+        }
+
+        .fs-25 {
+            font-size: 25px;
+        }
+
+        .fc-5 {
+            color: #555;
+        }
+
+        .fc-3f {
+            color: #3F51B5;
+        }
+
+        .ff-cursive {
+            font-family: cursive;
+        }
+
+        .lighter {
+            font-weight: lighter;
+        }
+
+        .ml-5 {
+            margin-left: 5px;
+        }
+
+        .ml-15 {
+            margin-left: 15px;
+        }
+
+        .ml-20 {
+            margin-left: 20px;
+        }
+
+        .mt-5 {
+            margin-top: 5px;
+        }
+
+        .mt-10 {
+            margin-top: 10px;
+        }
+
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .mt-30 {
+            margin-top: 30px;
+        }
+
+        .mr-10 {
+            margin-right: 10px;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .lp-2 {
+            letter-spacing: 2px;
+        }
+
+        .bg-e {
+            background: #eee;
+        }
+
+        .ta-r {
+            text-align: right;
+        }
+
+        .ta-c {
+            text-align: center;
+        }
+
+        .dp-ib {
+            display: inline-block;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .tab {
+            height: 40px;
+            line-height: 40px;
+            font-size: 12px;
+            text-align: center;
+            padding: 5px;
+            display: block;
+            color: #FFF;
+        }
+
+        .tab-focus {
+            border-radius: 0;
+            font-size: 15px;
+            font-weight: bold;
+            background: #1f2755;
+        }
+
+        .tab:hover {
+            cursor: pointer;
+            background: #1f2755;
+            font-weight: bold;
+        }
+
+        .view {
+            display: none;
+            padding: 30px 20px 20px 45px;
+        }
+
+        .view-focus {
+            display: block;
+        }
+
+        .spinner {
+            width: 150px;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+        }
+
+        .spinner > div {
+            width: 30px;
+            height: 30px;
+            background-color: #515faf;
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+            animation: bouncedelay 1.4s infinite ease-in-out;
+            /* Prevent first frame from flickering when animation starts */
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .spinner .bounce1 {
+            -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s;
+        }
+
+        .spinner .bounce2 {
+            -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s;
+        }
+
+        @-webkit-keyframes bouncedelay {
+            0%, 80%, 100% {
+                -webkit-transform: scale(0.0)
+            }
+            40% {
+                -webkit-transform: scale(1.0)
+            }
+        }
+
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0.0);
+                -webkit-transform: scale(0.0);
+            }
+            40% {
+                transform: scale(1.0);
+                -webkit-transform: scale(1.0);
+            }
+        }
+
+        .empty-show-container {
+            display: none;
+            text-align: center;
+        }
+
+        .empty-show-container img {
+            width: 400px;
+            margin-top: 100px;
+        }
+
+        #View-introduce-head, #View-scratch-head, #View-configuration-head, #View-deploy-head , #View-help-head {
+            text-align: left;
+        }
+
+        table
+        {
+            border-collapse: collapse;
+            text-align: center;
+            margin:0 0 20px 0;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+        table tr:hover
+        {
+            background: #d0f3f7;
+        }
+
+    </style>
+</head>
+<body>
+<div id="Head">
+    <div class="dp-ib left" style="padding:13px 0 0 17px;height: 48px;">
+        <a class="no_a" href="">
+            <img width="150" src="https://user-images.githubusercontent.com/35942268/188274226-5ccdfb75-5bcb-4d90-895f-4190d64ae22d.png" />
+        </a>
+
+    </div>
+    <div class="dp-ib fs-25 lighter left" style="margin-left: 7px;font-weight: bold;"><a class="no_a" href="/mis/run_trace/run_trace">CI Manager</a></div>
+    <div class="fs-14 lighter right ff-cursive"><a class="no_a" href="/mis/run_trace/run_trace"></a></div>
+</div>
+<div id="Body">
+    <div id="Dashboard">
+        <ul>
+            <li class="tab tab-introduce fc-5" data-href="?tab=introduce" id="Tab-introduce">项目介绍</li>
+            <li class="tab tab-scratch fc-5" data-href="?tab=scratch" id="Tab-scratch">快速上手</li>
+            <li class="tab tab-configuration fc-5" data-href="?tab=configuration" id="Tab-configuration">CI/CD配置</li>
+            <li class="tab tab-deploy fc-5" data-href="?tab=deploy" id="Tab-deploy">私有化部署</li>
+            <li class="tab tab-help fc-5" data-href="?tab=help" id="Tab-help">帮助文档</li>
+        </ul>
+    </div>
+    <div class="left" id="View">
+        <div class="view" id="View-introduce">
+            <h3 id="View-introduce-head">项目介绍</h3>
+            <div id="View-introduce-body">
+                <p>CIManager是一个用于高效管理多个gitlab golang项目通用CI的轻量级开源框架。</p>
+                <p><a href="https://github.com/WGrape">查看作者</a></p>
+                <p><a href="https://github.com/WGrape/CIManager">源码地址</a></p>
+            </div>
+            <div class="empty-show-container">
+                <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
+            </div>
+        </div>
+        <div class="view" id="View-scratch">
+            <h2 id="View-scratch-head">快速上手</h2>
+
+            <div id="View-scratch-body" style="display: block;">
+
+                <blockquote><p>为了方便您快速应用，可以参考 <a href="https://jihulab.com/WGrape/apimock-example/">apimock-example</a> 项目是如何使用<code>CIManager</code>的</p></blockquote>
+
+                <h3><span >1、为您的项目添加.gitlab-ci.yml文件</span></h3>
+
+                <p>首先，和单项目下的CI管理方式一样，在您的各个项目下添加一个<code>.gitlab-ci.yml</code>配置文件，它的内容如下所示</p>
+
+                <pre>
+image: golang:1.17
+
+before_script:
+  - echo '====== CIManager Start Running ========='
+
+after_script:
+  - echo '====== CIManager Stopped Successfully ========='
+
+stages:
+  - CIManager
+
+CIManager:
+  stage: CIManager
+  script:
+    - git clone https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh</pre>
+
+                <h3><span >2、正常提交您的项目</span></h3>
+
+                <p>添加完之后，如往常一样，正常编写并提交您的项目即可</p>
+
+                <h3><span >3、CIManager开始工作</span></h3>
+
+                <p>当您每次提交项目的时候，在runner机器上都会运行CIManager，它的底层<a href="https://github.com/WGrape/Blog/issues/249">运行原理</a>如下图所示，详细运行过程可以<a href="https://jihulab.com/WGrape/apimock-example/-/jobs/4354428">查看这里</a></p>
+
+                <p style="height: 700px;"><img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png" height="600px"></p>
+
+            </div>
+
+            <div class="empty-show-container">
+                <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
+            </div>
+        </div>
+        <div class="view" id="View-configuration">
+            <h2 id="View-configuration-head">CI/CD配置</h2>
+
+            <div id="View-configuration-body">
+                <p>基于低耦合、易扩展、高效率的思想，CIManager框架内部集成了非常丰富的Stage，通过不同Stage的组合构成了一个完整的集成和发布流程。</p>
+
+                <img width="491" alt="image" src="https://user-images.githubusercontent.com/35942268/188272087-7e502181-4c4e-4342-8124-7dae22ddbfd9.png">
+
+                <p>那么是如何实现的呢？在<a href="https://jihulab.com/WGrape/apimock-example/-/blob/main/.gitlab-ci.yml">apimock-example</a>项目例子中，会发现定义了大量的variables变量，正是这些变量被应用于不同的Stage，才实现了强大丰富的CI/CD功能。</p>
+
+                <p>默认情况下，即使不配置任何变量，也可以正常使用部分功能。如果您想要了解更多CI/CD配置，请<a href="./index.html?tab=configuration">查看文档</a></p>
+
+                <h3 style="margin-top: 20px;">1、系统变量</h3>
+                <p>下面是所支持的系统级别的变量</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>GOPATH</td>
+                        <td>否</td>
+                        <td>Go环境配置</td>
+                        <td>无</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h3>2、项目变量</h3>
+                <p>下面是所支持的项目级别的变量</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>PROJECT_NAME</td>
+                        <td>否</td>
+                        <td>项目名称</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>PROJECT_ID</td>
+                        <td>否</td>
+                        <td>项目的ID</td>
+                        <td>无</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h3>3、阶段变量</h3>
+                <p>下面是在不同阶段（Stage）所支持的变量</p>
+                <h4>(1) 单元测试</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>UNIT_TEST_TRIGGER_CMD</td>
+                        <td>否</td>
+                        <td>触发单元测试的命令</td>
+                        <td>无</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h4>(2) 接口文档生成</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>APIDOC_TRIGGER_CMD</td>
+                        <td>否</td>
+                        <td>触发生成接口文档的命令</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>APIDOC_FILE</td>
+                        <td>否</td>
+                        <td>生成的接口文档路径</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>GITLAB_HOST</td>
+                        <td>否</td>
+                        <td>gitlab私有化部署的域名</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>GITLAB_API_TOKEN</td>
+                        <td>否</td>
+                        <td>gitlab配置的API Token</td>
+                        <td>无</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h4>(3) 本地构建</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>LOCAL_BUILD_TRIGGER_CMD</td>
+                        <td>是</td>
+                        <td>构建项目的命令</td>
+                        <td>无</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h4>(4) 健康检查</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>HEALTH_CHECK_TRIGGER_CMD</td>
+                        <td>是</td>
+                        <td>健康检查和检测成功运行的命令</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>HEALTH_CHECK_SUCCESS</td>
+                        <td>是</td>
+                        <td>健康检查成功的返回内容</td>
+                        <td>无</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h3>4、其他变量</h3>
+                <p>下面是所支持的其它变量</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>DING_KEYWORD</td>
+                        <td>否</td>
+                        <td>钉钉群通知关键字</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>DING_ACCESS_TOKEN</td>
+                        <td>否</td>
+                        <td>钉钉群通知的WebHook Token</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>DING_NOTICE_SWITCH</td>
+                        <td>否</td>
+                        <td>是否开启钉钉群通知</td>
+                        <td>无</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="empty-show-container">
+                <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
+            </div>
+        </div>
+        <div class="view" id="View-deploy">
+            <h2 id="View-deploy-head">私有化部署</h2>
+
+            <div id="View-deploy-body">
+                <h3>1、下载项目</h3>
+                <p>无需任务复杂安装过程，直接通过Git方式clone到本地即可。</p>
+
+                <pre>git clone https://github.com/WGrape/CIManager.git</pre>
+
+                <h3>2、部署至私有gitlab</h3>
+                <p>如果您不需要对CIManager框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的 <span style="color: #5f71d5">.gitlab-ci.yml</span> 配置文件中的 <span style="color: #5f71d5">https://github.com/WGrape/CIManager.git</span> 替换为CIManager在您私有仓库中的地址即可。</p>
+
+                <h3>3、扩展开发</h3>
+                <p>本框架是基于 <span style="color: #5f71d5">gitlab golang</span> 开发的框架，如果您项目中使用的是其他git仓库或语言，那么可以在CIManager框架基础上进行扩展开发。您当然也可以新增配置检查、依赖检查等加强CI/CD的阶段（Stage）操作，直接修改源码即可。具体请参考<a href="https://github.com/WGrape/CIManager/blob/main/doc/design.md">设计原理文档</a></p>
+            </div>
+
+            <div class="empty-show-container">
+                <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
+            </div>
+        </div>
+        <div class="view" id="View-help">
+            <h2 id="View-help-head">帮助文档</h2>
+
+            <div id="View-help-body">
+                <h3>1、如何安装golangci-lint</h3>
+                <p>官方提供了如下的安装方式</p>
+                <pre style="margin-bottom:0;">curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2</pre>
+                <p>由于官方安装可能会有网络限制，所以在CIManager中使用了基于 <a href="https://github.com/WGrape/cache">第三方缓存</a> 的安装</p>
+                <h3>2、CURL: command not found问题</h3>
+                <p>在Ubuntu系统下，使用<code>apt-get</code>安装<code>curl</code>即可。特别需要注意的是。如果没有特殊兼容处理是无法使用<code>CURL</code>这种大写拼写命令的，需要使用小写的<code>curl</code>命令</p>
+                <pre><code class="language-bash">mv /etc/apt/sources.list /etc/apt/sources.list.bak \
+    &amp;&amp; echo 'deb http://mirrors.163.com/debian/ stretch main non-free contrib' &gt; /etc/apt/sources.list \
+    &amp;&amp; echo 'deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib' &gt;&gt; /etc/apt/sources.list \
+    &amp;&amp; echo 'deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib' &gt;&gt; /etc/apt/sources.list \
+    &amp;&amp; apt-get update -y
+apt-get install curl -y</code></pre>
+                <h3>3、附录参考文档</h3>
+                <p>下面提供了一些可供您使用的参考文档</p>
+                <ul>
+                    <li style="display: block;margin-bottom:5px;">1、<a href="https://docs.gitlab.cn/jh/api/wikis.html">Gitlab Wiki API</a></li>
+                    <li style="display: block">2、<a href="https://docs.gitlab.cn/jh/api/wikis.html">极狐WikiAPI</a></li>
+                </ul>
+            </div>
+
+            <div class="empty-show-container">
+                <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div id="Foot">
+    <div class="fs-13 ta-c" style="padding:10px 15px;">
+        <span class="fc-5">了解更多 ? 请查看</span>
+        <a href="https://github.com/WGrape/CIManager" target="_blank">CIManager源码</a>
+    </div>
+</div>
+<div id="Loading">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/URI.js/1.19.2/URI.min.js"></script>
+<script>
+
+    function getURLPath() {
+        let origin = window.location.origin;
+        let pathname = window.location.pathname;
+        return origin + pathname;
+    }
+
+    function getURLQuery(query) {
+        let uriObject = URI(window.location.href);
+        return uriObject.query(true)[query];
+    }
+
+    function redirect(query = '') {
+        window.location.href = getURLPath() + query;
+    }
+
+    function listenSwitchTab() {
+        $('.tab').click(function () {
+            let href = $(this).attr('data-href');
+            if (typeof href === 'string' && '' !== href) {
+                redirect($(this).attr('data-href'));
+            }
+        });
+    }
+
+    function loadView(view = 'introduce') {
+        $('#View-' + view).addClass('view-focus');
+        if ('introduce' === view) {
+        }
+    }
+
+    function loadStyle() {
+        let height = parseInt($("#View").height()) + 50;
+        $("#Dashboard").height(height);
+        $("#Dashboard").css('min-height', parseInt(window.innerHeight) - parseInt($("#Head").outerHeight()) - parseInt($("#Foot").outerHeight()));
+    }
+
+    function loadTab() {
+        let uriObject = URI(window.location.href);
+        if (false === uriObject.hasQuery('tab')) {
+            $('#Tab-introduce').addClass('tab-focus');
+            loadView();
+            return;
+        }
+        let query = uriObject.query(true)['tab'];
+        if (['introduce', 'scratch', 'configuration', 'deploy','help'].indexOf(query) >= 0) {
+            $('#Tab-' + query).addClass('tab-focus');
+            loadView(query);
+        } else {
+            redirect();
+        }
+    }
+
+    window.onload = function () {
+        listenSwitchTab();
+        loadTab();
+        loadStyle();
+    };
+</script>
