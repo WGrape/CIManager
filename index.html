@@ -49,7 +49,7 @@
         margin-bottom: 20px;
     }
 
-    #View-introduce-body,#View-deploy-body,#View-help-body{
+    #View-introduce-body,#View-deploy-body,#View-help-body,#View-comment-body{
         margin-top: 20px;
     }
     </style>
@@ -392,7 +392,7 @@
             margin-top: 100px;
         }
 
-        #View-introduce-head, #View-scratch-head, #View-configuration-head, #View-deploy-head , #View-help-head {
+        #View-introduce-head, #View-scratch-head, #View-configuration-head, #View-deploy-head, #View-help-head, #View-comment-head {
             text-align: left;
         }
 
@@ -447,6 +447,7 @@
             <li class="tab tab-configuration fc-5" data-href="?tab=configuration" id="Tab-configuration">CI/CD配置</li>
             <li class="tab tab-deploy fc-5" data-href="?tab=deploy" id="Tab-deploy">私有化部署</li>
             <li class="tab tab-help fc-5" data-href="?tab=help" id="Tab-help">帮助文档</li>
+            <li class="tab tab-help fc-5" data-href="?tab=comment" id="Tab-comment">评论反馈</li>
         </ul>
     </div>
     <div class="left" id="View">
@@ -752,6 +753,21 @@ apt-get install curl -y</code></pre>
                 <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
             </div>
         </div>
+        <div class="view" id="View-comment">
+            <h2 id="View-comment-head">评论反馈</h2>
+            <div id="View-comment-body">
+                <script src="https://utteranc.es/client.js"
+                        repo="wgrape/WGrape.github.io"
+                        issue-term="title"
+                        theme="github-light"
+                        crossorigin="anonymous"
+                        async>
+                </script>
+            </div>
+            <div class="empty-show-container">
+                <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
+            </div>
+        </div>
     </div>
     <div class="clear"></div>
 </div>
@@ -818,7 +834,7 @@ apt-get install curl -y</code></pre>
             return;
         }
         let query = uriObject.query(true)['tab'];
-        if (['introduce', 'scratch', 'configuration', 'deploy','help'].indexOf(query) >= 0) {
+        if (['introduce', 'scratch', 'configuration', 'deploy','help','comment'].indexOf(query) >= 0) {
             $('#Tab-' + query).addClass('tab-focus');
             loadView(query);
         } else {
