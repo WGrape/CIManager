@@ -1,0 +1,2 @@
+# 禁用html语言统计, 否则github会把此项目统计为HTML语言
+*.html  linguist-detectable=false
