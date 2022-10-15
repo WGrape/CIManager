@@ -1,3 +1,4 @@
+# Print the environment variables.
 PrintEnv(){
   echo -e "cat /proc/version="$(cat /proc/version)
   echo -e "CI_BUILDS_DIR=${CI_BUILDS_DIR}"
@@ -5,6 +6,7 @@ PrintEnv(){
   echo -e "ls="$(ls)
 }
 
+# Send the failure notice.
 SendFailureNotice(){
   if [ "${CI_COMMIT_REF_NAME}" == "${CI_DEFAULT_BRANCH}" ]; then
       actionName="Request to merge ${CI_COMMIT_REF_NAME}"

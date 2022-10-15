@@ -1,6 +1,10 @@
 # 官方文档
 
+> 文档版本若存在不更新问题，请大家即时在 Issues 中反馈
+
 ## <span id="1">一、CI/CD配置</span>
+
+> 关于变量配置可以参考项目 [apimock-example](https://jihulab.com/WGrape/apimock-example)
 
 ### 1、系统变量
 下面是所支持的系统级别的变量
@@ -82,7 +86,10 @@ mv /etc/apt/sources.list /etc/apt/sources.list.bak \
 apt-get install curl -y
 ```
 
-## 二、附录参考文档
+## 三、如何参与
+欢迎大家的参与，更欢迎大家的项目PR，请先提交至testing分支，经过review并且在 [apimock-example](https://jihulab.com/WGrape/apimock-example/-/pipelines) 项目的 Pipeline 成功运行后，即可合入。
+
+## 四、附录参考文档
 下面提供了一些可供您使用的参考文档
 
 - [Gitlab Wiki API](https://docs.gitlab.cn/jh/api/wikis.html)
