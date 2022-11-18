@@ -1,0 +1,52 @@
+# this example yml file: https://jihulab.com/WGrape/apimock-example/-/blob/main/.gitlab-ci.yml
+image: golang:1.17
+variables:
+  # variable configuration for [your private gitlab host]
+  GITLAB_HOST: ""
+  GITLAB_API_TOKEN: ""
+
+  # variable configuration for [your project]
+  PROJECT_NAME: "apimock-example"
+  PROJECT_ID: 48845
+
+  # variable configuration for [DingDing WebHook]
+  DING_KEYWORD: "apimock-example"
+  DING_ACCESS_TOKEN: ""
+  DING_NOTICE_SWITCH: "off"
+
+  # variable configuration for [check code]
+  CHECK_CODE_SWITCH: "on"
+
+  # variable configuration for [unit test]
+  UNIT_TEST_TRIGGER_CMD: "cd mock && go test -v . && cd .. && \
+                          cd service && go test -v . && cd ..
+                         "
+  UNIT_TEST_SWITCH: "on"
+
+  # variable configuration for [apidoc generator]
+  APIDOC_TRIGGER_CMD: "cd mock && go test -v . && cd .."
+  APIDOC_FILE: "apidoc.md"
+  APIDOC_SWITCH: "off"
+
+  # variable configuration for [local build]
+  LOCAL_BUILD_TRIGGER_CMD: "go mod download && go build -o project && nohup ./project &"
+  LOCAL_BUILD_SWITCH: "on"
+
+  # variable configuration for [health check]
+  HEALTH_CHECK_TRIGGER_CMD: "curl -X GET 127.0.0.1:8000/ping"
+  HEALTH_CHECK_SUCCESS: "ok"
+  HEALTH_CHECK_SWITCH: "on"
+
+before_script:
+  - echo '====== CIManager Start Running ========='
+
+after_script:
+  - echo '====== CIManager Stopped Successfully ========='
+
+stages:
+  - CIManager
+
+CIManager:
+  stage: CIManager
+  script:
+    - git clone -b testing https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh
