@@ -1,10 +1,11 @@
 currentDir=$(pwd)
 . $currentDir/.gitlab/include/function.sh
-echo -e "------------ The script pre_check.sh is running ------------"
-echo -e "1. Print the variables"
-PrintEnv
 
-echo -e "2. Check the must variables"
+echo -e "------------ The script pre_check.sh is running ------------"
+
+EveryStageCommonOperation
+
+echo -e "1. Check the must variables"
 
 if [ "${DING_NOTICE_SWITCH}" == "on" ]; then
   if [ "${DING_ACCESS_TOKEN}" == "" ]; then

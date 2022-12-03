@@ -1,8 +1,8 @@
 currentDir=$(pwd)
 . $currentDir/.gitlab/include/function.sh
 echo -e "------------ The script api_test.sh is running ------------"
-echo -e "1. Print the variables"
-PrintEnv
+
+EveryStageCommonOperation
 
 if [ "${API_TEST_SWITCH}" == "" ] || [ "${API_TEST_SWITCH}" == "off" ] ; then
   echo -e "Because you turn off the switch, so skip api_test.sh"

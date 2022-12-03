@@ -1,11 +1,12 @@
 currentDir=$(pwd)
 . $currentDir/.gitlab/include/function.sh
-echo -e "------------ The script health_check.sh is running ------------"
-echo -e "1. Print the variables"
-PrintEnv
 
-echo -e "2. Check the service"
-if [ "${HEALTH_CHECK_TRIGGER_CMD}" != "" ]; then
+echo -e "------------ The script health_check.sh is running ------------"
+
+EveryStageCommonOperation
+
+echo -e "1. Check the service"
+if [ "${HEALTH_CHECK_TRIGGER_CMD}" != "" ] && [ "${HEALTH_CHECK_SUCCESS}" != "" ]; then
     i=0
     while true
     do

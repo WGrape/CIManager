@@ -6,6 +6,14 @@ PrintEnv(){
   echo -e "ls="$(ls)
 }
 
+# Actions performed by each task
+EveryStageCommonOperation(){
+  echo -e "[The following are common operations for each task]"
+  echo -e "[- Print the variables]"
+  PrintEnv
+  echo -e "[The above are common operations for each task]"
+}
+
 # Send the failure notice.
 SendFailureNotice(){
   if [ "${CI_COMMIT_REF_NAME}" == "${CI_DEFAULT_BRANCH}" ]; then

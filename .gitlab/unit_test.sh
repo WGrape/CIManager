@@ -1,11 +1,12 @@
 currentDir=$(pwd)
 . $currentDir/.gitlab/include/function.sh
-echo -e "------------ The script unit_test.sh is running ------------"
-echo -e "1. Print the variables"
-PrintEnv
 
-# 2. Test the directory of dao
-echo -e "2. Trigger the unit test"
+echo -e "------------ The script unit_test.sh is running ------------"
+
+EveryStageCommonOperation
+
+# 1. Test the directory of dao
+echo -e "1. Trigger the unit test"
 if [ "${UNIT_TEST_TRIGGER_CMD}" != "" ]; then
     eval $UNIT_TEST_TRIGGER_CMD
     if [ $? -ne 0 ]; then
