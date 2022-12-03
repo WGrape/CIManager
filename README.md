@@ -38,7 +38,7 @@
 
 ## <span id="2">二、快速上手</span>
 
-> 1、在```CIManager```的早期版本中仅支持```gitlab```项目，但在 [v1.3](https://github.com/WGrape/CIManager/releases/tag/v1.2.0) 版本后新增了对```github```项目的支持。
+> 1、在```CIManager```的早期版本中仅支持```gitlab```项目，但在 [v1.3.0](https://github.com/WGrape/CIManager/releases/tag/v1.3.0) 版本后新增了对```github```项目的支持。
 > 
 > 2、为了方便您快速应用，可以参考 [apimock-example](https://jihulab.com/WGrape/apimock-example/) 和 [matching](https://github.com/WGrape/matching) 项目是如何在```gitlab```和```github```中使用```CIManager```进行```CI/CD```管理的
 
