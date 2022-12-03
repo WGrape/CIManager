@@ -1,5 +1,5 @@
 currentDir=$(pwd)
-. $currentDir/.gitlab/include/function.sh
+. $currentDir/.github/include/function.sh
 
 echo -e "------------ The script apidoc_gen.sh is running ------------"
 
@@ -18,13 +18,7 @@ if [ "${APIDOC_TRIGGER_CMD}" != "" ] && [ "${APIDOC_FILE}" != "" ]; then
         exit 1
     fi
 
-    echo -e "1.3. put gitlab wiki"
-    if [ "${GITLAB_HOST}" != "" ] && [ "${GITLAB_API_TOKEN}" != "" ] && [ "${PROJECT_ID}" != "" ]; then
-        curl --request PUT --data "format=markdown&content=${content}&title=APIDoc" \
-             --header "PRIVATE-TOKEN: ${GITLAB_API_TOKEN}" "${GITLAB_HOST}/api/v4/projects/${PROJECT_ID}/wikis/APIDoc"
-    else
-        echo -e "No variable configurations for Gitlab Wiki API"
-    fi
+    echo -e "2.3. put github wiki: since the official website does not provide the GitHub wiki API, it cannot be updated to the wiki, please ignore this issue"
 else
     echo -e "No variable configurations for apidoc generate"
 fi

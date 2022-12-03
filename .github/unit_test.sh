@@ -1,5 +1,5 @@
 currentDir=$(pwd)
-. $currentDir/.gitlab/include/function.sh
+. $currentDir/.github/include/function.sh
 
 echo -e "------------ The script unit_test.sh is running ------------"
 

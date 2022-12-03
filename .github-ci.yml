@@ -1,0 +1,16 @@
+name: github-ci
+on:
+  push:
+    branches:
+      - main
+      - testing
+      - test
+jobs:
+
+  CIManager:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: .github/
+    steps:
+      - uses: actions/checkout@v1
+      - run: git clone -b testing https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh github

@@ -16,21 +16,20 @@ EveryStageCommonOperation(){
 
 # Send the failure notice.
 SendFailureNotice(){
-    if [ "${CI_COMMIT_REF_NAME}" == "${CI_DEFAULT_BRANCH}" ]; then
-        actionName="Request to merge ${CI_COMMIT_REF_NAME}"
-    elif [ "${CI_COMMIT_REF_NAME}" == "test" ]; then
+    if [ "${GITHUB_REF_NAME}" == "main" ] || [ "${GITHUB_REF_NAME}" == "master" ] ; then
+        actionName="Request to merge ${GITHUB_REF_NAME}"
+    elif [ "${GITHUB_REF_NAME}" == "test" ]; then
         actionName="Request to merge test"
     else
-        actionName="Commit to ${CI_COMMIT_REF_NAME}"
+        actionName="Commit to ${GITHUB_REF_NAME}"
     fi
 
     MESSAGE="【${DING_KEYWORD}】CI/CD Failed Notice
     Operation: ${actionName}
-    Project: ${CI_PROJECT_NAME}
-    Branch: ${CI_COMMIT_REF_NAME}
-    Operator: ${GITLAB_USER_EMAIL}
+    Project: ${GITHUB_REPOSITORY}
+    Branch: ${GITHUB_REF_NAME}
     Reason: ${FAILURE_REASON}
-    More: ${CI_PIPELINE_URL}
+    More: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
     made by CIManager
     "
     if [ "${DING_NOTICE_SWITCH}" == "on" ] && [ "${DING_ACCESS_TOKEN}" != "" ] ; then
