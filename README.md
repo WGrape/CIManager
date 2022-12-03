@@ -18,7 +18,7 @@
 
 - [一、介绍](#1)
 - [二、快速上手](#2)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1、为您的项目添加ci.yml文件](#21)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1、为您的项目添加x-ci.yml文件](#21)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2、正常提交您的项目](#22)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3、CIManager开始工作](#23)
 - [三、CI/CD配置](#3)
@@ -38,13 +38,13 @@
 
 ## <span id="2">二、快速上手</span>
 
-> 为了方便您快速应用，可以参考 [apimock-example](https://jihulab.com/WGrape/apimock-example/) 和 [matching](https://github.com/WGrape/matching) 项目是如何使用```CIManager```的
-
-### <span id="21">1、为您的项目添加ci.yml文件</span>
-
-> 如果您使用的github项目，需要创建```.github/workflows/.github-ci.yml```配置文件。
+> 1、在```CIManager```的早期版本中仅支持```gitlab```项目，但在 [v1.3](https://github.com/WGrape/CIManager/releases/tag/v1.2.0) 版本后新增了对```github```项目的支持。
 > 
-> 如果您使用的gitlab项目，需要创建```.gitlab-ci.yml```配置文件。
+> 2、为了方便您快速应用，可以参考 [apimock-example](https://jihulab.com/WGrape/apimock-example/) 和 [matching](https://github.com/WGrape/matching) 项目是如何在```gitlab```和```github```中使用```CIManager```进行```CI/CD```管理的
+
+### <span id="21">1、为您的项目添加x-ci.yml文件</span>
+
+> 如果您使用的github项目，需要创建```.github/workflows/.github-ci.yml```配置文件。如果您使用的gitlab项目，需要创建```.gitlab-ci.yml```配置文件。
 
 首先，和单项目下的CI管理方式一样，在您的各个项目下添加一个```.gitlab-ci.yml```或```.github/workflows/.github-ci.yml```配置文件，它的内容如下所示
 
@@ -63,7 +63,8 @@ stages:
 CIManager:
   stage: CIManager
   script:
-    - git clone https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh gitlab # 注意如果是github项目, 则需要使用 bash start.sh github
+    # 注意如果是github项目, 则需要使用 bash start.sh github
+    - git clone https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh gitlab
 ```
 
 ### <span id="22">2、正常提交您的项目</span>
@@ -104,6 +105,9 @@ git clone https://github.com/WGrape/CIManager.git
 ## <span id="5">五、问题与解答</span>
 如果在您使用过程中遇到问题，可以查看[官方文档](./doc/README.md)，或在```ISSUE```中提问。
 
-## <span id="6">六、贡献榜</span>
+## <span id="6">六、贡献与使用榜</span>
 
 <img src="https://contrib.rocks/image?repo=wgrape/cimanager" >
+
+- [WGrape/matching](https://github.com/WGrape/matching) ：基于CIManager实现在github上对CI/CD的统一管理
+- [apimock-example](https://jihulab.com/WGrape/apimock-example/) ：基于CIManager实现在gitlab上对CI/CD的统一管理
