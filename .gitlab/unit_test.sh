@@ -17,7 +17,7 @@ if [ "${UNIT_TEST_TRIGGER_CMD}" != "" ]; then
         echo -e "test success"
     fi
 else
-  echo -e "No variable configurations for unit test"
+    echo -e "No variable configurations for unit test"
 fi
 
 echo -e "------------ The script unit_test.sh is stopped ------------"

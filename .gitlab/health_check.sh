@@ -26,6 +26,8 @@ if [ "${HEALTH_CHECK_TRIGGER_CMD}" != "" ] && [ "${HEALTH_CHECK_SUCCESS}" != "" 
 
         sleep 1
     done
+else
+    echo -e "No variable configurations for health check"
 fi
 
 echo -e "------------ The script health_check.sh is stopped ------------"

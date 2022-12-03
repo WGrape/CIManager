@@ -26,7 +26,7 @@ if [ "${APIDOC_TRIGGER_CMD}" != "" ] && [ "${APIDOC_FILE}" != "" ]; then
         echo -e "No variable configurations for Gitlab Wiki API"
     fi
 else
-    echo -e "No variable configurations for apidoc generator"
+    echo -e "No variable configurations for apidoc generate"
 fi
 
 echo -e "------------ The script apidoc_gen.sh is stopped ------------"

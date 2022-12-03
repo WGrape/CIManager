@@ -15,6 +15,8 @@ if [ "${LOCAL_BUILD_TRIGGER_CMD}" != "" ]; then
     else
         echo -e "build success"
     fi
+else
+    echo -e "No variable configurations for local build"
 fi
 
 echo -e "------------ The script local_build.sh is stopped ------------"
