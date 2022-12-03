@@ -1,5 +1,6 @@
 currentDir=$(pwd)
 . $currentDir/.gitlab/include/function.sh
+
 echo -e "------------ The script api_test.sh is running ------------"
 
 EveryStageCommonOperation

@@ -49,4 +49,4 @@ stages:
 CIManager:
   stage: CIManager
   script:
-    - git clone -b testing https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh
+    - git clone -b testing https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh gitlab
