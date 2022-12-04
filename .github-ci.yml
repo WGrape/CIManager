@@ -10,7 +10,18 @@ jobs:
   CIManager:
     runs-on: ubuntu-latest
     env:
-      working-directory: .github/
+      # define directory in gitHub action
+      working-directory: .github/../
+
+      # variable configuration for [check code]
+      CHECK_CODE_SWITCH: "on"
+
+      # variable configuration for [unit test]
+      UNIT_TEST_TRIGGER_CMD: "cd mock && go test -v . && cd .. && \
+                              cd service && go test -v . && cd ..
+                             "
+      UNIT_TEST_SWITCH: "on"
+
     steps:
       - uses: actions/checkout@v1
       - run: git clone -b testing https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh github
