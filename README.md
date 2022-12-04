@@ -3,8 +3,8 @@
 </p>
 
 <div align="center">
-<p>A lightweight open source framework for efficiently managing common CI for multiple golang projects</p>
-<p>一个用于高效管理多个golang项目通用CI的轻量级开源框架 | <a href="https://wgrape.github.io/CIManager/">官方网站</a></p>
+<p>A lightweight open source framework for efficiently managing common CI for multi projects</p>
+<p>一个用于高效管理多个项目通用CI的轻量级开源框架 | <a href="https://wgrape.github.io/CIManager/">官方网站</a></p>
 </div>
 
 <p align="center">
@@ -25,7 +25,8 @@
 - [四、私有化部署](#4)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1、下载项目](#41)
 - &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2、部署至私有仓库](#42)
-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3、扩展开发](#43)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3、自定义扩展](#43)
+- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4、多语言支持](#44)
 - [五、帮助文档](#5)
 - [六、贡献榜](#6)
 
@@ -34,7 +35,7 @@
 
 为了解决这个问题，曾经提出过一种方案，详细请见文章 [《多项目下CI管理方案的设计与实现》](https://github.com/WGrape/Blog/issues/249) 。
 
-本项目是基于文章中的```远程管理```方案设计而实现的一个用于高效管理多个```golang```项目通用CI的轻量级开源框架，它不但完全开箱即用，而且方便定制化开发与扩展。
+本项目是基于文章中的```远程管理```方案设计而实现的一个用于高效管理多个项目通用CI的轻量级开源框架，它不但完全开箱即用，而且方便定制化开发与扩展。
 
 ## <span id="2">二、快速上手</span>
 
@@ -97,10 +98,13 @@ git clone https://github.com/WGrape/CIManager.git
 ### <span id="42">2、部署至私有仓库</span>
 如果您不需要对```CIManager```框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的```.gitlab-ci.yml```或```.github/workflows/.github-ci.yml```配置文件中的```https://github.com/WGrape/CIManager.git```替换为CIManager在您私有仓库中的地址即可。
 
-### <span id="43">3、扩展开发</span>
-本框架是基于```golang```开发的框架，如果您项目中使用的是其他git仓库或语言，那么可以在```CIManager```框架基础上进行扩展开发。
+### <span id="43">3、自定义扩展</span>
+本框架源码轻量简单，如果不满足您的需求，您可以在```CIManager```框架基础上进行自定义扩展的开发。 
 
-您当然也可以新增配置检查、依赖检查等加强```CI/CD```的阶段（Stage）操作，直接修改源码即可。具体请参考[设计原理文档](./doc/design.md)
+当然也可以新增配置检查、依赖检查等加强```CI/CD```的阶段（Stage）操作，直接修改源码即可。具体请参考[设计原理文档](./doc/design.md)
+
+### <span id="44">4、多语言支持</span>
+虽然本项目以```golang```语言为例，但是您只需要简单修改源码，即可实现任何语言多项目的CI/CD统一管理。
 
 ## <span id="5">五、问题与解答</span>
 如果在您使用过程中遇到问题，可以查看[官方文档](./doc/README.md)，或在```ISSUE```中提问。
