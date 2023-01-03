@@ -3,6 +3,16 @@ if [ -n "$1" ] && [ "$1" == "github" ]; then
   ci_directory=".github"
 fi
 
+if [ -n "$2" ] && [ "$2" != "" ]; then
+    single_task=$2
+    if [ "${single_task}" == "api_test" ]; then
+        bash ./${ci_directory}/api_test.sh
+    elif [ "${single_task}" == "health_check" ]; then
+        bash ./${ci_directory}/health_check.sh
+    fi
+    exit 0
+fi
+
 bash ${ci_directory}/pre_check.sh
 if [ $? -ne 0 ]; then
     echo -e "
