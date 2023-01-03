@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.4.0](https://github.com/WGrape/CIManager/compare/v1.3.0...v1.4.0) (2023-01-03)
+
+
+### Features
+
+* start.sh启动脚本中新增单个脚本启动的支持 ([d054f70](https://github.com/WGrape/CIManager/commit/d054f70298ff2ff92d40e6e92c073cea6141403a))
+
+
+### Styling
+
+* github示例CI配置文件中新增变量的配置 ([c4b5a6f](https://github.com/WGrape/CIManager/commit/c4b5a6fbd1d00da3d0fd8484663ea23ccd50d7cf))
+
+
+### Docs
+
+* 完善修改文档 ([f62211a](https://github.com/WGrape/CIManager/commit/f62211a1f1f729e47fda8da41970a4e5eb5560b0))
+
 ## [1.3.0](https://github.com/WGrape/CIManager/compare/v1.2.0...v1.3.0) (2022-12-03)
 
 
