@@ -8,6 +8,7 @@
 </div>
 
 <p align="center">
+  <a href="https://www.oscs1024.com/project/oscs/WGrape/CIManager?ref=badge_small" alt="OSCS Status"><img src="https://www.oscs1024.com/platform/badge/WGrape/CIManager.svg?size=small"/></a>
     <img src="https://img.shields.io/badge/Language-Shell-blue.svg">
     <img src="https://img.shields.io/badge/Release-1.1.0-blue.svg">
     <img src="https://img.shields.io/github/repo-size/wgrape/cimanager">
