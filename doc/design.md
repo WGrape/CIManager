@@ -1,4 +1,10 @@
-# 设计原理文档
+<div align="center"> <h1>设计原理文档</h1> </div>
+
+## 一、设计架构
+
+### 1、
+
+
 
 ## 一、项目规范
 
@@ -12,7 +18,7 @@
 if [ "${DING_NOTICE_SWITCH}" == "on" ]; then
   if [ "${DING_ACCESS_TOKEN}" == "" ]; then
     FAILURE_REASON="Failed to run pre_check.sh: the variables DING_ACCESS_TOKEN empty"
-    SendFailureNotice
+    send_failure_notice
     exit 1
   fi
 fi
@@ -28,7 +34,7 @@ fi
 if [ "${CHECK_CODE_SWITCH}" == "on" ]; then
   bash ./.gitlab/check_code.sh
   if [ $? -ne 0 ]; then
-    echo -e "
+    echo "
   CIManager Running Result: check_code.sh failed"
     exit 1
   fi
@@ -46,10 +52,10 @@ if [ "${API_TEST_TRIGGER_CMD}" != "" ]; then
   eval $API_TEST_TRIGGER_CMD
   if [ $? -ne 0 ]; then
     FAILURE_REASON="run API Test failed"
-    SendFailureNotice
+    send_failure_notice
     exit 1
   else
-    echo -e "run API Test success"
+    echo "run API Test success"
   fi
 fi
 ```

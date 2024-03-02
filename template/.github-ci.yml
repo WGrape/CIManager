@@ -1,0 +1,29 @@
+# if you use github, you should move this file to .github/workflows
+name: github-ci
+on:
+  push:
+    branches:
+      - main
+      - test
+jobs:
+
+  CIManager:
+    runs-on: ubuntu-latest
+    env:
+      # define directory in gitHub action
+      working-directory: .github/../
+
+      # variable configuration for [check code]
+      CHECK_CODE_SWITCH: "on"
+
+      # variable configuration for [unit test]
+      UNIT_TEST_SWITCH: "on"
+      UNIT_TEST_TRIGGER_CMD: "cd mock && go test -v . && cd .. && \
+                              cd service && go test -v . && cd .."
+    steps:
+      - uses: actions/checkout@v1
+      - run: |
+            git clone -b testing https://github.com/wgrape/CIManager.git
+            cp -an ./CIManager/.pipeline ./
+            rm -rf ./CIManager
+            cd .pipeline && bash start.sh

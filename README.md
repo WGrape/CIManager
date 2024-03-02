@@ -84,7 +84,7 @@ CIManager:
 
 那么是如何实现的呢？在 [apimock-example](https://jihulab.com/WGrape/apimock-example/-/blob/main/.gitlab-ci.yml) 项目例子中，会发现定义了大量的```variables```变量，正是这些变量被应用于不同的Stage，才实现了强大丰富的```CI/CD```功能。
 
-默认情况下，即使不配置任何变量，也可以正常使用部分功能。如果您想要了解更多```CI/CD```的配置，请[查看文档](./doc/README.md#1)
+默认情况下，即使不配置任何变量，也可以正常使用部分功能。如果您想要了解更多```CI/CD```的配置，请查看[使用教程](./doc/Usage.md#1)
 
 ## <span id="4">四、私有化部署</span>
 
@@ -108,7 +108,7 @@ git clone https://github.com/WGrape/CIManager.git
 虽然本项目以```golang```语言为例，但是您只需要简单修改源码，即可实现任何语言多项目的CI/CD统一管理。
 
 ## <span id="5">五、问题与解答</span>
-如果在您使用过程中遇到问题，可以查看[官方文档](./doc/README.md)，或在```ISSUE```中提问。
+如果在您使用过程中遇到问题，可以查看[使用教程](./doc/Usage.md#1)，或在```ISSUE```中提问。
 
 ## <span id="6">六、贡献与使用榜</span>
 
