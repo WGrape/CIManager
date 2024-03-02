@@ -21,6 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
+            printf "\033[32m\n+++++ CIManager Booter +++++\033[0m\n\n"
             git clone https://github.com/wgrape/CIManager.git
             cp -an ./CIManager/.pipeline ./
             rm -rf ./CIManager
