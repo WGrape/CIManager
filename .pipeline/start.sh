@@ -28,10 +28,10 @@ job_queue=(
 )
 
 for job_name in "${job_queue[@]}"; do
-    global_job_name=${job_name}
-    global_job_path="${job_name//./\/}.sh"
-    global_switch_name="${job_name^^}_SWITCH"
-    global_trigger_cmd="${job_name^^}_TRIGGER_CMD"
+    global_job_name=${job_name//./\/}
+    global_job_path="${global_job_name}.sh"
+    global_switch_name="${global_job_name^^}_SWITCH"
+    global_trigger_cmd="${global_job_name^^}_TRIGGER_CMD"
 
     # check if the switch is on
     if [ ${!global_switch_name} != "true" ]; then
