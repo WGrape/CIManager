@@ -34,27 +34,27 @@ for job_name in "${job_queue[@]}"; do
     global_trigger_cmd="${global_job_name^^}_TRIGGER_CMD"
 
     # check if the switch is on
-    switch_is_on=$(eval echo "$"$global_switch_name)
-    if [ "${switch_is_on}" != "true" ]; then
-        print_ok "${global_job_name} is skipped due to the switch is off"
+    switch_status=$(eval echo "$"$global_switch_name)
+    if [ "${switch_status}" != "on" ]; then
+        print_ok "${global_job_name} is skipped due to the switch is off\n"
         continue
     fi
 
     # before job
     if ! before_job; then
-        print_error "pipline exit, before_job failed: ${global_job_name}"
+        print_error "pipline exit, before_job failed: ${global_job_name}\n"
         exit 1
     fi
 
     # run job
     if ! run_job; then
-        print_error "pipline exit, run_job failed: ${global_job_path} failed"
+        print_error "pipline exit, run_job failed: ${global_job_path} failed\n"
         exit 1
     fi
 
     # after job
     if ! after_job; then
-        print_error "pipline exit, after_job failed: ${global_job_name}"
+        print_error "pipline exit, after_job failed: ${global_job_name}\n"
         exit 1
     fi
 done

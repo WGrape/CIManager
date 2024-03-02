@@ -13,9 +13,18 @@ print_warn() {
     printf "\e[33m$1\e[0m"
 }
 
+# print step message.
+print_step() {
+    if [ "$STAGE_ID" = "" ]; then
+        STAGE_ID=0
+    fi
+    ((STAGE_ID++))
+    printf "\033[32m\n+++++ step$STAGE_ID: $1 +++++\033[0m\n\n"
+}
+
 # print the environment variables.
-print_env(){
-    echo "================ [variables] ================"
+show_env(){
+    print_step "show_env: ${job_name}"
     echo "1. cat /proc/version="$(cat /proc/version)
     echo "2. CI_BUILDS_DIR=${CI_BUILDS_DIR}"
     echo "3. pwd="$(pwd)
@@ -24,13 +33,13 @@ print_env(){
 
 # before job
 before_job() {
-    echo "------------ before the job: ${job_name} ------------"
-    print_env
+    print_step "before the job: ${job_name}"
+    show_env
     return 0
 }
 
 run_job() {
-    echo "------------ running the job: ${job_name} ------------"
+    print_step "running the job: ${job_name}"
     if ! bash "${global_job_path}"; then
         print_error "job fail: ${global_job_name}"
         return 1
@@ -40,7 +49,7 @@ run_job() {
 
 # after job
 after_job() {
-    echo "------------ after the job: ${job_name} ------------"
+    print_step "after the job: ${job_name}"
     return 0
 }
 
