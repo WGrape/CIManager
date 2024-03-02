@@ -27,6 +27,8 @@ job_queue=(
     "cd.stage_monitor.job_health_check"
 )
 
+print_step "start pipeline"
+
 for job_name in "${job_queue[@]}"; do
     global_job_name=${job_name//./_}
     global_job_path="${BASE_PATH}/.pipeline/${job_name//./\/}.sh"
@@ -58,3 +60,5 @@ for job_name in "${job_queue[@]}"; do
         exit 1
     fi
 done
+
+print_ok "end pipeline"
