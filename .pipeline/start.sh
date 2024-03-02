@@ -5,7 +5,7 @@ cd $CUR_PATH && cd ../
 BATH_PATH=$(pwd)
 . $BATH_PATH/.pipeline/internal/helper.sh
 
-job_queue = (
+job_queue = ( \
     # ========================= CI =========================
     # [stage] = pre
     "ci.stage_pre.job_pre_check" \
