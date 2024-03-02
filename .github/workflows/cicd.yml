@@ -21,8 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-            printf "\033[32m\n+++++ CIManager Boot +++++\033[0m\n\n"
+            printf "================ Start to Boot CIManager ================"
             git clone https://github.com/wgrape/CIManager.git
             cp -an ./CIManager/.pipeline ./
             rm -rf ./CIManager
-            cd .pipeline && bash start.sh
+            cd .pipeline
+            printf "================ Boot CIManager Stopped ================"
+            bash start.sh
