@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-            git clone -b testing https://github.com/wgrape/CIManager.git
+            git clone https://github.com/wgrape/CIManager.git
             cp -an ./CIManager/.pipeline ./
             rm -rf ./CIManager
             cd .pipeline && bash start.sh
