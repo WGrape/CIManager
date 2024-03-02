@@ -8,24 +8,23 @@ jobs:
   CIManager:
     runs-on: ubuntu-latest
     env:
+      # ========================= CI =========================
+      # [stage] = pre
       CI_STAGE_PRE_JOB_PRE_CHECK_SWITCH: "ON"
       CI_STAGE_PRE_JOB_PRE_INSTALL_SWITCH: "ON"
-      CI_STAGE_TEST_JOB_CHECK_CODE_SWITCH: "ON"
+      # [stage] = test
       CI_STAGE_TEST_JOB_UNIT_TEST_SWITCH: "ON"
-      CI_STAGE_BUILD_JOB_APIDOC_GEN_SWITCH: "ON"
+      CI_STAGE_TEST_JOB_UNIT_TEST_TRIGGER_CMD: "cd tests && bash test.sh"
+      CI_STAGE_TEST_JOB_CHECK_CODE_SWITCH: "ON"
+      # [stage] = build
       CI_STAGE_BUILD_JOB_LOCAL_BUILD_SWITCH: "ON"
+      CI_STAGE_BUILD_JOB_APIDOC_GEN_SWITCH: "ON"
+      # ========================= CD =========================
+      # [stage] = deploy
       CD_STAGE_DEPLOY_JOB_SSH_SWITCH: "ON"
+      # [stage] = monitor
       CD_STAGE_MONITOR_JOB_API_TEST_SWITCH: "ON"
       CD_STAGE_MONITOR_JOB_HEALTH_CHECK_SWITCH: "ON"
-
-
-      # variable configuration for [check code]
-      CHECK_CODE_SWITCH: "on"
-
-      # variable configuration for [unit test]
-      UNIT_TEST_SWITCH: "on"
-      UNIT_TEST_TRIGGER_CMD: "cd mock && go test -v . && cd .. && \
-                              cd service && go test -v . && cd .."
     steps:
       - uses: actions/checkout@v1
       - run: |

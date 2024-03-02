@@ -16,8 +16,8 @@ job_queue=(
     "ci.stage_test.job_unit_test"
 
     # [stage] = build
-    "ci.stage_build.job_apidoc_gen"
     "ci.stage_build.job_local_build"
+    "ci.stage_build.job_apidoc_gen"
     # ========================= CD =========================
     # [stage] = deploy
     # "cd.stage_deploy.job_pull_artifact"
