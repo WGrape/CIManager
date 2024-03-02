@@ -8,8 +8,16 @@ jobs:
   CIManager:
     runs-on: ubuntu-latest
     env:
-      # define directory in gitHub action
-      working-directory: .github/../
+      CI_STAGE_PRE_JOB_PRE_CHECK_SWITCH: "ON"
+      CI_STAGE_PRE_JOB_PRE_INSTALL_SWITCH: "ON"
+      CI_STAGE_TEST_JOB_CHECK_CODE_SWITCH: "ON"
+      CI_STAGE_TEST_JOB_UNIT_TEST_SWITCH: "ON"
+      CI_STAGE_BUILD_JOB_APIDOC_GEN_SWITCH: "ON"
+      CI_STAGE_BUILD_JOB_LOCAL_BUILD_SWITCH: "ON"
+      CD_STAGE_DEPLOY_JOB_SSH_SWITCH: "ON"
+      CD_STAGE_MONITOR_JOB_API_TEST_SWITCH: "ON"
+      CD_STAGE_MONITOR_JOB_HEALTH_CHECK_SWITCH: "ON"
+
 
       # variable configuration for [check code]
       CHECK_CODE_SWITCH: "on"
@@ -21,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-            printf "================ Start to Boot CIManager ================\n\n"
+            printf "================ Start to Boot CIManager ================\n"
             git clone https://github.com/wgrape/CIManager.git
             cp -an ./CIManager/.pipeline ./
             rm -rf ./CIManager

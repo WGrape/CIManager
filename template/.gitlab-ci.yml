@@ -50,7 +50,10 @@ CIManager:
   stage: CIManager
   script:
     - | 
+      printf "================ Start to Boot CIManager ================\n"
       git clone https://github.com/wgrape/CIManager.git
       cp -an ./CIManager/.pipeline ./
       rm -rf ./CIManager
-      cd .pipeline && bash start.sh
+      cd .pipeline
+      printf "================ Boot CIManager Stopped ================\n\n"
+      bash start.sh

@@ -18,12 +18,14 @@ jobs:
 
       # variable configuration for [unit test]
       UNIT_TEST_SWITCH: "on"
-      UNIT_TEST_TRIGGER_CMD: "cd mock && go test -v . && cd .. && \
-                              cd service && go test -v . && cd .."
+      UNIT_TEST_TRIGGER_CMD: "cd tests && bash test.sh"
     steps:
       - uses: actions/checkout@v1
       - run: |
+            printf "================ Start to Boot CIManager ================\n"
             git clone https://github.com/wgrape/CIManager.git
             cp -an ./CIManager/.pipeline ./
             rm -rf ./CIManager
-            cd .pipeline && bash start.sh
+            cd .pipeline
+            printf "================ Boot CIManager Stopped ================\n\n"
+            bash start.sh
