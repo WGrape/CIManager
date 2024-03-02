@@ -27,7 +27,7 @@ job_queue=(
     "cd.stage_monitor.job_health_check"
 )
 
-print_step "start pipeline"
+print_ok ">>>>>>>>>>> start pipeline\n\n"
 
 for job_name in "${job_queue[@]}"; do
     global_job_name=${job_name//./_}
@@ -40,7 +40,7 @@ for job_name in "${job_queue[@]}"; do
     # check if the switch is on
     switch_status=$(eval echo "$"$global_switch_name)
     if [ "${switch_status}" != "on" ]; then
-        print_warn "${global_job_name} is skipped due to the switch is off\n"
+        print_warn "job is skipped, due to the switch is off\n"
         continue
     fi
 
@@ -63,4 +63,4 @@ for job_name in "${job_queue[@]}"; do
     fi
 done
 
-print_ok "end pipeline"
+print_ok "\n\n<<<<<<<<<<< end pipeline"

@@ -21,10 +21,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
-            printf "================ Start to Boot CIManager ================"
+            printf "================ Start to Boot CIManager ================\n\n"
             git clone https://github.com/wgrape/CIManager.git
             cp -an ./CIManager/.pipeline ./
             rm -rf ./CIManager
             cd .pipeline
-            printf "================ Boot CIManager Stopped ================"
+            printf "================ Boot CIManager Stopped ================\n\n"
             bash start.sh
