@@ -35,10 +35,12 @@ for job_name in "${job_queue[@]}"; do
     global_switch_name="${global_job_name^^}_SWITCH" # ^^ equals upper()
     global_trigger_cmd="${global_job_name^^}_TRIGGER_CMD"
 
+    print_step "handle job: ${global_job_name}"
+
     # check if the switch is on
     switch_status=$(eval echo "$"$global_switch_name)
     if [ "${switch_status}" != "on" ]; then
-        print_ok "${global_job_name} is skipped due to the switch is off\n"
+        print_warn "${global_job_name} is skipped due to the switch is off\n"
         continue
     fi
 
