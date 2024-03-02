@@ -19,7 +19,7 @@ print_env(){
     echo "1. cat /proc/version="$(cat /proc/version)
     echo "2. CI_BUILDS_DIR=${CI_BUILDS_DIR}"
     echo "3. pwd="$(pwd)
-    echo "4. ls="$(ls)
+    echo "4. ls="$(ls -alh)
 }
 
 # before job

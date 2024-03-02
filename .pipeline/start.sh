@@ -2,8 +2,8 @@
 
 CUR_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)
 cd $CUR_PATH && cd ../
-BATH_PATH=$(pwd)
-. $BATH_PATH/.pipeline/internal/helper.sh
+BASE_PATH=$(pwd)
+. $BASE_PATH/.pipeline/internal/helper.sh
 
 job_queue=(
     # ========================= CI =========================
@@ -29,7 +29,7 @@ job_queue=(
 
 for job_name in "${job_queue[@]}"; do
     global_job_name=${job_name//./_}
-    global_job_path="${job_name//./\/}.sh"
+    global_job_path="${BASE_PATH}/.pipeline/${job_name//./\/}.sh"
     global_switch_name="${global_job_name^^}_SWITCH" # ^^ equals upper()
     global_trigger_cmd="${global_job_name^^}_TRIGGER_CMD"
 
