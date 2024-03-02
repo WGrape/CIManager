@@ -22,5 +22,3 @@ if [ "${global_trigger_cmd}" != "" ]; then
         sleep 1
     done
 fi
-
-return 0

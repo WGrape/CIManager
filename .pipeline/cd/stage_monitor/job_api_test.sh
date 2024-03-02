@@ -5,8 +5,7 @@ if [ "${global_trigger_cmd}" != "" ]; then
     if ! eval "${global_trigger_cmd}"; then
         FAILURE_REASON="failed to run ${global_job_name}"
         send_failure_notice
-        return 1
+        exit 1
     fi
 fi
 
-return 0

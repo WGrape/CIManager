@@ -17,5 +17,3 @@ if [ "${global_trigger_cmd}" != "" ]; then
         return 1
     fi
 fi
-
-return 0
