@@ -34,7 +34,8 @@ for job_name in "${job_queue[@]}"; do
     global_trigger_cmd="${global_job_name^^}_TRIGGER_CMD"
 
     # check if the switch is on
-    if [ "${!global_switch_name}" != "true" ]; then
+    switch_is_on=$(eval echo "$"$global_switch_name)
+    if [ "${switch_is_on}" != "true" ]; then
         print_ok "${global_job_name} is skipped due to the switch is off"
         continue
     fi
