@@ -32,7 +32,7 @@
 
 首先，和单项目下的CI管理方式一样，在您的各个项目下添加一个```.gitlab-ci.yml```或```.github/workflows/.github-ci.yml```配置文件。在```/template```目录下有定义好的配置文件，您可以直接使用。
 
-![image](https://github.com/WGrape/CIManager/assets/35942268/21026799-c865-4534-9342-8954cec04200)
+<img width="300" src="https://github.com/WGrape/CIManager/assets/35942268/21026799-c865-4534-9342-8954cec04200">
 
 ### 2、正常提交您的项目
 添加完之后，如往常一样，正常编写并提交您的项目即可
