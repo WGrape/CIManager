@@ -37,6 +37,7 @@ before_job() {
     return 0
 }
 
+# run job
 run_job() {
     print_step "running the job: ${global_job_name}"
     if ! . "${global_job_path}"; then
@@ -53,14 +54,6 @@ after_job() {
 
 # send the failure notice.
 send_failure_notice(){
-    if [ "${CI_COMMIT_REF_NAME}" == "${CI_DEFAULT_BRANCH}" ]; then
-        actionName="Request to merge ${CI_COMMIT_REF_NAME}"
-    elif [ "${CI_COMMIT_REF_NAME}" == "test" ]; then
-        actionName="Request to merge test"
-    else
-        actionName="Commit to ${CI_COMMIT_REF_NAME}"
-    fi
-
     MESSAGE="【Failed】CI/CD Failed Notice
     global_job_name: ${global_job_name}
     global_job_path: ${global_job_path}
@@ -68,9 +61,5 @@ send_failure_notice(){
     global_job_cmd: ${global_job_cmd}
     —— made by CIManager
     "
-    if [ "${DING_NOTICE_SWITCH}" == "on" ] && [ "${DING_ACCESS_TOKEN}" != "" ] ; then
-        curl -H 'Content-type: application/json' -d "{\"msgtype\":\"text\", \"text\": {\"content\":\"${MESSAGE}\"}}" "https://oapi.dingtalk.com/robot/send?access_token=${DING_ACCESS_TOKEN}"
-    else
-        echo $MESSAGE
-    fi
+    echo $MESSAGE
 }

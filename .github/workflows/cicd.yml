@@ -16,7 +16,7 @@ jobs:
       CI_STAGE_PRE_JOB_PRE_INSTALL_CMD: ""
       # [stage] = test
       CI_STAGE_TEST_JOB_UNIT_TEST_SWITCH: "ON"
-      CI_STAGE_TEST_JOB_UNIT_TEST_CMD: "cd tests && bash test.sh"
+      CI_STAGE_TEST_JOB_UNIT_TEST_CMD: "cd test && bash start.sh"
       CI_STAGE_TEST_JOB_CHECK_CODE_SWITCH: "ON"
       CI_STAGE_TEST_JOB_CHECK_CODE_CMD: ""
       # [stage] = build

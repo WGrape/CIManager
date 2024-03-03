@@ -7,4 +7,14 @@ BASE_PATH=$(pwd)
 
 echo "test start"
 
+print_ok "test print_ok"
+
+print_error "test print_error"
+
+print_warn "test print_warn"
+
+print_phase "test print_phase"
+
+print_step "test print_step"
+
 echo "end test"
