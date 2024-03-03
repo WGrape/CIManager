@@ -50,13 +50,13 @@ CIManager:
   stage: CIManager
   script:
     - | 
-      printf "================ Start to Boot CIManager ================\n"
+      printf "\033[32m================ Start to Boot CIManager ================\033[0m\n"
       git clone https://github.com/wgrape/CIManager.git
       cp -an ./CIManager/.pipeline ./
       rm -rf ./CIManager
       cd .pipeline
-      printf "================ End Boot ================\n\n"
-      printf "================ Debug Start ================\n\n"
+      printf "\033[32m================ End Boot ================\033[0m\n\n"
+      printf "\033[32m================ Debug Start ================\033[0m\n\n"
       show_env(){
           echo "1. cat /proc/version="$(cat /proc/version)
           echo "2. CI_BUILDS_DIR=${CI_BUILDS_DIR}"
@@ -64,7 +64,7 @@ CIManager:
           echo "4. ls="$(ls -a)
       }
       show_env
-      printf "================ End Debug ================\n\n"
-      print_ok ">>>>>>>>>>> Start Pipeline\n\n"
+      printf "\033[32m================ End Debug ================\033[0m\n\n"
+      printf "\033[32m>>>>>>>>>>> Start Pipeline\033[0m\n\n"
       bash start.sh
-      print_ok "\n\n<<<<<<<<<<< End Pipeline"
+      print_ok "\n\n\033[32m<<<<<<<<<<< End Pipeline\033[0m"
