@@ -38,7 +38,7 @@
 添加完之后，如往常一样，正常编写并提交您的项目即可
 
 ### 3、CIManager开始工作
-当您每次提交项目的时候，在runner机器上都会运行CIManager，它的底层[运行原理](https://github.com/WGrape/Blog/issues/249)如下图所示，详细运行过程可以 [查看这里](https://jihulab.com/WGrape/apimock-example/-/jobs/4354428)
+当您每次提交项目的时候，在runner机器上都会运行CIManager，它的底层[运行原理](https://github.com/WGrape/Blog/issues/249)如下图所示，详细运行过程可以 [查看这里](https://jihulab.com/WGrape/apimock-example/-/pipelines)
 
 <img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png" height="400">
 
