@@ -37,9 +37,8 @@ jobs:
             printf "================ Debug Start ================\n\n"
             show_env(){
                 echo "1. cat /proc/version="$(cat /proc/version)
-                echo "2. CI_BUILDS_DIR=${CI_BUILDS_DIR}"
-                echo "3. pwd="$(pwd)
-                echo "4. ls="$(ls -a)
+                echo "2. pwd="$(pwd)
+                echo "3. ls="$(ls -a)
             }
             show_env
             printf "================ End Debug ================\n\n"
