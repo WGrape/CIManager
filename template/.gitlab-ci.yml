@@ -65,6 +65,6 @@ CIManager:
       }
       show_env
       printf "================ End Debug ================\n\n"
-      printf ">>>>>>>>>>> Start Pipeline\n\n"
+      printf "\e[36m>>>>>>>>>>> Start Pipeline\e[0m\n\n"
       bash start.sh
       printf "\n\n\e[36m<<<<<<<<<<< End Pipeline\e[0m"
