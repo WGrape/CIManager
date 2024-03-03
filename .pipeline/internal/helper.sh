@@ -15,11 +15,11 @@ print_warn() {
 
 # print phase message.
 print_phase() {
-    if [ "$STAGE_ID" = "" ]; then
-        STAGE_ID=0
+    if [ "$PHASE_ID" = "" ]; then
+        PHASE_ID=0
     fi
-    ((STAGE_ID++))
-    printf "\e[36m+++++ Phase$STAGE_ID: $1 +++++\e[0m\n\n"
+    ((PHASE_ID++))
+    printf "\e[36m+++++ Phase$PHASE_ID: $1 +++++\e[0m\n\n"
 }
 
 # print step message.
