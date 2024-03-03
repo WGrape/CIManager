@@ -4,7 +4,7 @@
 
 <div align="center">
 <p>A lightweight open source framework for efficiently managing common CI for multi projects</p>
-<p>一个用于高效管理多个项目通用CI的轻量级开源框架 | <a href="https://wgrape.github.io/CIManager/">官方网站</a></p>
+<p>一个用于高效管理多个项目通用CI/CD的轻量级开源框架 | <a href="https://wgrape.github.io/CIManager/">官方网站</a></p>
 </div>
 
 <p align="center">
@@ -30,11 +30,9 @@
 
 ### 1、为您的项目添加ci.yml文件
 
-首先，和单项目下的CI管理方式一样，在您的各个项目下添加一个```.gitlab-ci.yml```或```.github/workflows/.github-ci.yml```配置文件。在```/template```目录下有定义好配置文件，您可以直接使用。
+首先，和单项目下的CI管理方式一样，在您的各个项目下添加一个```.gitlab-ci.yml```或```.github/workflows/.github-ci.yml```配置文件。在```/template```目录下有定义好的配置文件，您可以直接使用。
 
-```yaml
-cp {CIManager_path}/template/.gitlab-ci.yml {your_project}/.gitlab-ci.yml
-```
+![image](https://github.com/WGrape/CIManager/assets/35942268/21026799-c865-4534-9342-8954cec04200)
 
 ### 2、正常提交您的项目
 添加完之后，如往常一样，正常编写并提交您的项目即可
