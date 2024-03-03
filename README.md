@@ -62,7 +62,7 @@ git clone https://github.com/WGrape/CIManager.git
 如果您不需要对```CIManager```框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的```.gitlab-ci.yml```或```.github/workflows/.github-ci.yml```配置文件中的```https://github.com/WGrape/CIManager.git```替换为CIManager在您私有仓库中的地址即可。
 
 ### 3、自定义开发
-本框架源码轻量简单，如果不满足您的需求，您可以在```CIManager```框架基础上进行自定义开发，比如新增配置检查、依赖检查等丰富和加强```CI/CD```的流水线功能。具体请参考[设计原理文档](./doc/DESIGN.md)
+本框架源码轻量简单，如果不满足您的需求，您可以在```CIManager```框架基础上进行自定义开发，比如新增配置检查、依赖检查等丰富和加强```CI/CD```的流水线功能。具体请参考[设计文档文档](./doc/DESIGN.md)
 
 ## 五、贡献
 
