@@ -45,4 +45,4 @@ jobs:
             printf "\033[32m================ End Debug ================\033[0m\n\n"
             printf "\033[32m>>>>>>>>>>> Start Pipeline\033[0m\n\n"
             bash start.sh
-            print_ok "\n\n\033[32m<<<<<<<<<<< End Pipeline\033[0m"
+            printf "\n\n\033[32m<<<<<<<<<<< End Pipeline\033[0m"
