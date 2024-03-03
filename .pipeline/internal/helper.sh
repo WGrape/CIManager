@@ -19,7 +19,7 @@ print_step() {
         STAGE_ID=0
     fi
     ((STAGE_ID++))
-    printf "\033[32m+++++ step$STAGE_ID: $1 +++++\033[0m\n\n"
+    printf " \e[36m+++++ step$STAGE_ID: $1 +++++\e[0m\n\n"
 }
 
 # before job
