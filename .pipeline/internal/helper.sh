@@ -39,7 +39,7 @@ before_job() {
 
 run_job() {
     print_step "running the job: ${global_job_name}"
-    if ! source "${global_job_path}"; then
+    if ! . "${global_job_path}"; then
         return 1
     fi
     return 0
