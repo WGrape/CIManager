@@ -10,15 +10,33 @@ jobs:
   CIManager:
     runs-on: ubuntu-latest
     env:
-      # define directory in gitHub action
-      working-directory: .github/../
 
-      # variable configuration for [check code]
-      CHECK_CODE_SWITCH: "on"
+      # ========================= CI =========================
+      # [stage] = pre
+      CI_STAGE_PRE_JOB_PRE_CHECK_SWITCH: "ON"
+      CI_STAGE_PRE_JOB_PRE_CHECK_CMD: ""
+      CI_STAGE_PRE_JOB_PRE_INSTALL_SWITCH: "ON"
+      CI_STAGE_PRE_JOB_PRE_INSTALL_CMD: ""
+      # [stage] = test
+      CI_STAGE_TEST_JOB_UNIT_TEST_SWITCH: "ON"
+      CI_STAGE_TEST_JOB_UNIT_TEST_CMD: "cd tests && bash test.sh"
+      CI_STAGE_TEST_JOB_CHECK_CODE_SWITCH: "ON"
+      CI_STAGE_TEST_JOB_CHECK_CODE_CMD: ""
+      # [stage] = build
+      CI_STAGE_BUILD_JOB_LOCAL_BUILD_SWITCH: "ON"
+      CI_STAGE_BUILD_JOB_LOCAL_BUILD_CMD: ""
+      CI_STAGE_BUILD_JOB_APIDOC_GEN_SWITCH: "ON"
+      CI_STAGE_BUILD_JOB_APIDOC_GEN_CMD: ""
+      # ========================= CD =========================
+      # [stage] = deploy
+      CD_STAGE_DEPLOY_JOB_SSH_SWITCH: "ON"
+      CD_STAGE_DEPLOY_JOB_SSH_CMD: ""
+      # [stage] = monitor
+      CD_STAGE_MONITOR_JOB_API_TEST_SWITCH: "ON"
+      CD_STAGE_MONITOR_JOB_API_TEST_CMD: ""
+      CD_STAGE_MONITOR_JOB_HEALTH_CHECK_SWITCH: "ON"
+      CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD: ""
 
-      # variable configuration for [unit test]
-      UNIT_TEST_SWITCH: "on"
-      UNIT_TEST_TRIGGER_CMD: "cd tests && bash test.sh"
     steps:
       - uses: actions/checkout@v1
       - run: |

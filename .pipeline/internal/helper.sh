@@ -64,8 +64,8 @@ send_failure_notice(){
     MESSAGE="【Failed】CI/CD Failed Notice
     global_job_name: ${global_job_name}
     global_job_path: ${global_job_path}
-    global_switch_name: ${global_switch_name}
-    global_trigger_cmd: ${global_trigger_cmd}
+    global_job_switch_name: ${global_job_switch_name}
+    global_job_cmd: ${global_job_cmd}
     —— made by CIManager
     "
     if [ "${DING_NOTICE_SWITCH}" == "on" ] && [ "${DING_ACCESS_TOKEN}" != "" ] ; then

@@ -12,8 +12,8 @@ echo "2. install curl"
 apt-get install curl -y
 
 # if trigger cmd exists, then execute it.
-if [ "${global_trigger_cmd}" != "" ]; then
-    if ! eval "${global_trigger_cmd}"; then
+if [ "${global_job_cmd}" != "" ]; then
+    if ! eval "${global_job_cmd}"; then
         exit 1
     fi
 fi

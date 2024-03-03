@@ -48,8 +48,8 @@ fi
 由于可能有单独运行任务的需求，所以为了脚本可以正常执行不出错，即使在```[1,2]```中已经检查了变量，那么在任务脚本中时，仍然要写检查变量是否存在的代码，如下代码所示。
 
 ```bash
-if [ "${API_TEST_TRIGGER_CMD}" != "" ]; then
-  eval $API_TEST_TRIGGER_CMD
+if [ "${API_TEST_CMD}" != "" ]; then
+  eval $API_TEST_CMD
   if [ $? -ne 0 ]; then
     FAILURE_REASON="run API Test failed"
     send_failure_notice
