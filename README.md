@@ -64,7 +64,7 @@ git clone https://github.com/WGrape/CIManager.git
 ### 3、自定义开发
 本框架源码轻量简单，如果不满足您的需求，您可以在```CIManager```框架基础上进行自定义开发，比如新增配置检查、依赖检查等丰富和加强```CI/CD```的流水线功能。具体请参考[设计文档文档](./doc/DESIGN.md)
 
-## 五、贡献
+## 五、项目贡献
 
 欢迎大家的参与，如果在您使用过程中遇到任何问题，可以随时在 [ISSUE](https://github.com/WGrape/CIManager/issues) 中提问，也欢迎大家的 [PR](https://github.com/WGrape/CIManager/pulls) 对本项目优化。
 

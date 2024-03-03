@@ -542,6 +542,8 @@
                 <p>下面是在不同Job中所支持的变量</p>
 
                 <h4>(1) CI_STAGE_PRE</h4>
+
+                <h5>① 预检查</h5>
                 <table>
                     <thead>
                     <tr>
@@ -558,6 +560,20 @@
                         <td>预检查的命令</td>
                         <td>无</td>
                     </tr>
+                    </tbody>
+                </table>
+
+                <h5>② 预安装</h5>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>CI_STAGE_BUILD_JOB_PRE_INSTALL_CMD</td>
                         <td>否</td>
@@ -568,6 +584,7 @@
                 </table>
 
                 <h4>(2) CI_STAGE_TEST</h4>
+                <h5>① 代码检查</h5>
                 <table>
                     <thead>
                     <tr>
@@ -584,6 +601,20 @@
                         <td>代码检查的命令</td>
                         <td>无</td>
                     </tr>
+                    </tbody>
+                </table>
+
+                <h5>② 单元测试</h5>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>CI_STAGE_BUILD_JOB_UNIT_TEST_CMD</td>
                         <td>否</td>
@@ -594,6 +625,7 @@
                 </table>
 
                 <h4>(3) CI_STAGE_BUILD</h4>
+                <h5>① 文档生成</h5>
                 <table>
                     <thead>
                     <tr>
@@ -610,6 +642,20 @@
                         <td>生成接口文档时的命令</td>
                         <td>无</td>
                     </tr>
+                    </tbody>
+                </table>
+
+                <h5>② 本地构建</h5>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>CI_STAGE_BUILD_JOB_LOCAL_BUILD_CMD</td>
                         <td>是</td>
@@ -620,6 +666,7 @@
                 </table>
 
                 <h4>(4) CD_STAGE_DEPLOY</h4>
+                <h5>① SSH部署</h5>
                 <table>
                     <thead>
                     <tr>
@@ -636,6 +683,20 @@
                         <td>执行SSH部署时的命令</td>
                         <td>无</td>
                     </tr>
+                    </tbody>
+                </table>
+
+                <h5>② 拉取制品部署</h5>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>CD_STAGE_MONITOR_JOB_PULL_ARTIFACT_CMD</td>
                         <td>否</td>
@@ -646,6 +707,8 @@
                 </table>
 
                 <h4>(5) CD_STAGE_MONITOR</h4>
+
+                <h5>① 接口测试</h5>
                 <table>
                     <thead>
                     <tr>
@@ -668,6 +731,20 @@
                         <td>接口请求成功时的返回内容</td>
                         <td>无</td>
                     </tr>
+                    </tbody>
+                </table>
+
+                <h5>② 健康检查</h5>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>变量名</th>
+                        <th>必须</th>
+                        <th>含义</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td>CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD</td>
                         <td>否</td>
