@@ -19,7 +19,7 @@ print_phase() {
         PHASE_ID=0
     fi
     ((PHASE_ID++))
-    printf "\e[36m+++++ Phase$PHASE_ID: $1 +++++\e[0m\n\n"
+    printf "\n\n\e[36m+++++ Phase$PHASE_ID: $1 +++++\e[0m\n\n"
 }
 
 # print step message.
@@ -28,7 +28,7 @@ print_step() {
         STAGE_ID=0
     fi
     ((STAGE_ID++))
-    printf "\033[34m----- Step($STAGE_ID): $1 -----\e[0m\n\n"
+    printf "\n\n\033[34m----- Step($STAGE_ID): $1 -----\e[0m\n\n"
 }
 
 # before job

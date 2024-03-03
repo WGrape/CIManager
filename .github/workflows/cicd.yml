@@ -8,6 +8,8 @@ jobs:
   CIManager:
     runs-on: ubuntu-latest
     env:
+      PROJECT_NAME: "CIManager"
+
       # ========================= CI =========================
       # [stage] = pre
       CI_STAGE_PRE_JOB_PRE_CHECK_SWITCH: "ON"
@@ -33,6 +35,7 @@ jobs:
       CD_STAGE_MONITOR_JOB_API_TEST_CMD: ""
       CD_STAGE_MONITOR_JOB_HEALTH_CHECK_SWITCH: "ON"
       CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD: ""
+      CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD_RES: "ok"
     steps:
       - uses: actions/checkout@v1
       - run: |

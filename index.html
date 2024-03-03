@@ -445,9 +445,8 @@
         <ul>
             <li class="tab tab-introduce fc-5" data-href="?tab=introduce" id="Tab-introduce">项目介绍</li>
             <li class="tab tab-scratch fc-5" data-href="?tab=scratch" id="Tab-scratch">快速上手</li>
-            <li class="tab tab-configuration fc-5" data-href="?tab=configuration" id="Tab-configuration">CI/CD配置</li>
+            <li class="tab tab-configuration fc-5" data-href="?tab=configuration" id="Tab-configuration">使用文档</li>
             <li class="tab tab-deploy fc-5" data-href="?tab=deploy" id="Tab-deploy">私有化部署</li>
-            <li class="tab tab-help fc-5" data-href="?tab=help" id="Tab-help">帮助文档</li>
             <li class="tab tab-help fc-5" data-href="?tab=comment" id="Tab-comment">评论反馈</li>
         </ul>
     </div>
@@ -470,26 +469,11 @@
 
                 <blockquote><p>为了方便您快速应用，可以参考 <a href="https://jihulab.com/WGrape/apimock-example/">apimock-example</a> 项目是如何使用<code>CIManager</code>的</p></blockquote>
 
-                <h3><span >1、为您的项目添加.gitlab-ci.yml文件</span></h3>
+                <h3><span >1、为您的项目添加ci.yml文件</span></h3>
 
-                <p>首先，和单项目下的CI管理方式一样，在您的各个项目下添加一个<code>.gitlab-ci.yml</code>配置文件，它的内容如下所示</p>
+                <p>首先，和单项目下的CI管理方式一样，在您的各个项目下添加一个```.gitlab-ci.yml```或```.github/workflows/.github-ci.yml```配置文件。在```/template```目录下有定义好配置文件，您可以直接使用。</p>
 
-                <pre>
-image: golang:1.17
-
-before_script:
-  - echo '====== CIManager Start Running ========='
-
-after_script:
-  - echo '====== CIManager Stopped Successfully ========='
-
-stages:
-  - CIManager
-
-CIManager:
-  stage: CIManager
-  script:
-    - git clone https://github.com/wgrape/CIManager.git ; cp -an ./CIManager/. ./ ; rm -rf ./CIManager ; bash start.sh</pre>
+                <pre>cp {CIManager_path}/template/.gitlab-ci.yml {your_project}/.gitlab-ci.yml</pre>
 
                 <h3><span >2、正常提交您的项目</span></h3>
 
@@ -499,7 +483,7 @@ CIManager:
 
                 <p>当您每次提交项目的时候，在runner机器上都会运行CIManager，它的底层<a href="https://github.com/WGrape/Blog/issues/249">运行原理</a>如下图所示，详细运行过程可以<a href="https://jihulab.com/WGrape/apimock-example/-/jobs/4354428">查看这里</a></p>
 
-                <p style="height: 700px;"><img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png" height="600px"></p>
+                <p style="height: 400px;"><img src="https://user-images.githubusercontent.com/35942268/184865495-ca6b8491-6f23-4db6-80c8-9853f677dacb.png" height="600px"></p>
 
             </div>
 
@@ -508,16 +492,10 @@ CIManager:
             </div>
         </div>
         <div class="view" id="View-configuration">
-            <h2 id="View-configuration-head">CI/CD配置</h2>
+            <h2 id="View-configuration-head">使用文档</h2>
 
             <div id="View-configuration-body">
-                <p>基于低耦合、易扩展、高效率的思想，CIManager框架内部集成了非常丰富的Stage，通过不同Stage的组合构成了一个完整的集成和发布流程。</p>
-
-                <img width="491" alt="image" src="https://user-images.githubusercontent.com/35942268/188272087-7e502181-4c4e-4342-8124-7dae22ddbfd9.png">
-
-                <p>那么是如何实现的呢？在<a href="https://jihulab.com/WGrape/apimock-example/-/blob/main/.gitlab-ci.yml">apimock-example</a>项目例子中，会发现定义了大量的variables变量，正是这些变量被应用于不同的Stage，才实现了强大丰富的CI/CD功能。</p>
-
-                <p>默认情况下，即使不配置任何变量，也可以正常使用部分功能。如果您想要了解更多CI/CD配置，请<a href="./index.html?tab=configuration">查看文档</a></p>
+                <h2 style="margin-top: 20px;">一、变量配置</h2>
 
                 <h3 style="margin-top: 20px;">1、系统变量</h3>
                 <p>下面是所支持的系统级别的变量</p>
@@ -539,6 +517,7 @@ CIManager:
                     </tr>
                     </tbody>
                 </table>
+
                 <h3>2、项目变量</h3>
                 <p>下面是所支持的项目级别的变量</p>
                 <table>
@@ -557,17 +536,12 @@ CIManager:
                         <td>项目名称</td>
                         <td>无</td>
                     </tr>
-                    <tr>
-                        <td>PROJECT_ID</td>
-                        <td>否</td>
-                        <td>项目的ID</td>
-                        <td>无</td>
-                    </tr>
                     </tbody>
                 </table>
-                <h3>3、阶段变量</h3>
-                <p>下面是在不同阶段（Stage）所支持的变量</p>
-                <h4>(1) 单元测试</h4>
+                <h3>3、JOB变量</h3>
+                <p>下面是在不同Job中所支持的变量</p>
+
+                <h4>(1) CI_STAGE_PRE</h4>
                 <table>
                     <thead>
                     <tr>
@@ -579,14 +553,21 @@ CIManager:
                     </thead>
                     <tbody>
                     <tr>
-                        <td>UNIT_TEST_TRIGGER_CMD</td>
+                        <td>CI_STAGE_BUILD_JOB_PRE_CHECK_CMD</td>
                         <td>否</td>
-                        <td>触发单元测试的命令</td>
+                        <td>预检查的命令</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>CI_STAGE_BUILD_JOB_PRE_INSTALL_CMD</td>
+                        <td>否</td>
+                        <td>预安装的命令</td>
                         <td>无</td>
                     </tr>
                     </tbody>
                 </table>
-                <h4>(2) 接口文档生成</h4>
+
+                <h4>(2) CI_STAGE_TEST</h4>
                 <table>
                     <thead>
                     <tr>
@@ -598,32 +579,21 @@ CIManager:
                     </thead>
                     <tbody>
                     <tr>
-                        <td>APIDOC_TRIGGER_CMD</td>
+                        <td>CI_STAGE_BUILD_JOB_CHECK_CODE_CMD</td>
                         <td>否</td>
-                        <td>触发生成接口文档的命令</td>
+                        <td>代码检查的命令</td>
                         <td>无</td>
                     </tr>
                     <tr>
-                        <td>APIDOC_FILE</td>
+                        <td>CI_STAGE_BUILD_JOB_UNIT_TEST_CMD</td>
                         <td>否</td>
-                        <td>生成的接口文档路径</td>
-                        <td>无</td>
-                    </tr>
-                    <tr>
-                        <td>GITLAB_HOST</td>
-                        <td>否</td>
-                        <td>gitlab私有化部署的域名</td>
-                        <td>无</td>
-                    </tr>
-                    <tr>
-                        <td>GITLAB_API_TOKEN</td>
-                        <td>否</td>
-                        <td>gitlab配置的API Token</td>
+                        <td>单元测试的命令</td>
                         <td>无</td>
                     </tr>
                     </tbody>
                 </table>
-                <h4>(3) 本地构建</h4>
+
+                <h4>(3) CI_STAGE_BUILD</h4>
                 <table>
                     <thead>
                     <tr>
@@ -635,14 +605,21 @@ CIManager:
                     </thead>
                     <tbody>
                     <tr>
-                        <td>LOCAL_BUILD_TRIGGER_CMD</td>
+                        <td>CI_STAGE_BUILD_JOB_APIDOC_GEN_CMD</td>
+                        <td>否</td>
+                        <td>生成接口文档时的命令</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>CI_STAGE_BUILD_JOB_LOCAL_BUILD_CMD</td>
                         <td>是</td>
-                        <td>构建项目的命令</td>
+                        <td>项目构建时的命令</td>
                         <td>无</td>
                     </tr>
                     </tbody>
                 </table>
-                <h4>(4) 健康检查</h4>
+
+                <h4>(4) CD_STAGE_DEPLOY</h4>
                 <table>
                     <thead>
                     <tr>
@@ -654,21 +631,21 @@ CIManager:
                     </thead>
                     <tbody>
                     <tr>
-                        <td>HEALTH_CHECK_TRIGGER_CMD</td>
-                        <td>是</td>
-                        <td>健康检查和检测成功运行的命令</td>
+                        <td>CD_STAGE_MONITOR_JOB_SSH_CMD</td>
+                        <td>否</td>
+                        <td>执行SSH部署时的命令</td>
                         <td>无</td>
                     </tr>
                     <tr>
-                        <td>HEALTH_CHECK_SUCCESS</td>
-                        <td>是</td>
-                        <td>健康检查成功的返回内容</td>
+                        <td>CD_STAGE_MONITOR_JOB_PULL_ARTIFACT_CMD</td>
+                        <td>否</td>
+                        <td>使用拉取镜像部署时的命令</td>
                         <td>无</td>
                     </tr>
                     </tbody>
                 </table>
-                <h3>4、其他变量</h3>
-                <p>下面是所支持的其它变量</p>
+
+                <h4>(5) CD_STAGE_MONITOR</h4>
                 <table>
                     <thead>
                     <tr>
@@ -680,21 +657,27 @@ CIManager:
                     </thead>
                     <tbody>
                     <tr>
-                        <td>DING_KEYWORD</td>
+                        <td>CD_STAGE_MONITOR_JOB_API_TEST_CMD</td>
                         <td>否</td>
-                        <td>钉钉群通知关键字</td>
+                        <td>执行接口测试的命令</td>
                         <td>无</td>
                     </tr>
                     <tr>
-                        <td>DING_ACCESS_TOKEN</td>
+                        <td>CD_STAGE_MONITOR_JOB_API_TEST_CMD_RES</td>
                         <td>否</td>
-                        <td>钉钉群通知的WebHook Token</td>
+                        <td>接口请求成功时的返回内容</td>
                         <td>无</td>
                     </tr>
                     <tr>
-                        <td>DING_NOTICE_SWITCH</td>
+                        <td>CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD</td>
                         <td>否</td>
-                        <td>是否开启钉钉群通知</td>
+                        <td>执行健康检查的命令</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                        <td>CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD_RES</td>
+                        <td>否</td>
+                        <td>健康检查成功时的返回内容</td>
                         <td>无</td>
                     </tr>
                     </tbody>
@@ -715,39 +698,11 @@ CIManager:
 
                 <pre>git clone https://github.com/WGrape/CIManager.git</pre>
 
-                <h3>2、部署至私有gitlab</h3>
-                <p>如果您不需要对CIManager框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的 <span style="color: #5f71d5">.gitlab-ci.yml</span> 配置文件中的 <span style="color: #5f71d5">https://github.com/WGrape/CIManager.git</span> 替换为CIManager在您私有仓库中的地址即可。</p>
+                <h3>2、部署至私有仓库</h3>
+                <p>如果您不需要对CIManager框架进行扩展开发，那么直接把它提交至您的私有仓库，并在您各个项目中的 <span style="color: #5f71d5">.gitlab-ci.yml</span> 或 <span style="color: #5f71d5">.github/workflows/.github-ci.yml</span> 配置文件中的 <span style="color: #5f71d5">https://github.com/WGrape/CIManager.git</span> 替换为CIManager在您私有仓库中的地址即可。</p>
 
-                <h3>3、扩展开发</h3>
-                <p>本框架是基于 <span style="color: #5f71d5">gitlab golang</span> 开发的框架，如果您项目中使用的是其他git仓库或语言，那么可以在CIManager框架基础上进行扩展开发。您当然也可以新增配置检查、依赖检查等加强CI/CD的阶段（Stage）操作，直接修改源码即可。具体请参考<a href="https://github.com/WGrape/CIManager/blob/main/doc/design.md">设计原理文档</a></p>
-            </div>
-
-            <div class="empty-show-container">
-                <img src="https://ae03.alicdn.com/kf/H74e64de0708845a498fe4ea8d13da9adi.jpg">
-            </div>
-        </div>
-        <div class="view" id="View-help">
-            <h2 id="View-help-head">帮助文档</h2>
-
-            <div id="View-help-body">
-                <h3>1、如何安装golangci-lint</h3>
-                <p>官方提供了如下的安装方式</p>
-                <pre style="margin-bottom:0;">curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.46.2</pre>
-                <p>由于官方安装可能会有网络限制，所以在CIManager中使用了基于 <a href="https://github.com/WGrape/cache">第三方缓存</a> 的安装</p>
-                <h3>2、CURL: command not found问题</h3>
-                <p>在Ubuntu系统下，使用<code>apt-get</code>安装<code>curl</code>即可。特别需要注意的是。如果没有特殊兼容处理是无法使用<code>CURL</code>这种大写拼写命令的，需要使用小写的<code>curl</code>命令</p>
-                <pre><code class="language-bash">mv /etc/apt/sources.list /etc/apt/sources.list.bak \
-    &amp;&amp; echo 'deb http://mirrors.163.com/debian/ stretch main non-free contrib' &gt; /etc/apt/sources.list \
-    &amp;&amp; echo 'deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib' &gt;&gt; /etc/apt/sources.list \
-    &amp;&amp; echo 'deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib' &gt;&gt; /etc/apt/sources.list \
-    &amp;&amp; apt-get update -y
-apt-get install curl -y</code></pre>
-                <h3>3、附录参考文档</h3>
-                <p>下面提供了一些可供您使用的参考文档</p>
-                <ul>
-                    <li style="display: block;margin-bottom:5px;">1、<a href="https://docs.gitlab.cn/jh/api/wikis.html">Gitlab Wiki API</a></li>
-                    <li style="display: block">2、<a href="https://docs.gitlab.cn/jh/api/wikis.html">极狐WikiAPI</a></li>
-                </ul>
+                <h3>3、自定义开发</h3>
+                <p>本框架源码轻量简单，如果不满足您的需求，您可以在CIManager框架基础上进行自定义开发，比如新增配置检查、依赖检查等丰富和加强CI/CD的流水线功能。具体请参考<a href="https://github.com/WGrape/CIManager/blob/main/doc/DESIGN.md">设计原理文档</a></p>
             </div>
 
             <div class="empty-show-container">
