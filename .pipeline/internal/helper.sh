@@ -1,6 +1,6 @@
 # print success message.
 print_ok() {
-    printf "\033[34m$1\033[0m"
+    printf "\033[32m$1\033[0m"
 }
 
 # print error message.
@@ -13,13 +13,22 @@ print_warn() {
     printf "\e[33m$1\e[0m"
 }
 
+# print phase message.
+print_phase() {
+    if [ "$STAGE_ID" = "" ]; then
+        STAGE_ID=0
+    fi
+    ((STAGE_ID++))
+    printf "\e[36m+++++ Phase$STAGE_ID: $1 +++++\e[0m\n\n"
+}
+
 # print step message.
 print_step() {
     if [ "$STAGE_ID" = "" ]; then
         STAGE_ID=0
     fi
     ((STAGE_ID++))
-    printf " \e[36m+++++ step$STAGE_ID: $1 +++++\e[0m\n\n"
+    printf "\033[34m----- Step($STAGE_ID): $1 -----\e[0m\n\n"
 }
 
 # before job

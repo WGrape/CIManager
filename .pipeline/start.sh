@@ -33,7 +33,7 @@ for job_name in "${job_queue[@]}"; do
     global_switch_name="${global_job_name^^}_SWITCH" # ^^ equals upper()
     global_trigger_cmd="${global_job_name^^}_TRIGGER_CMD"
 
-    print_step "handle job: ${global_job_name}"
+    print_phase "handle job: ${global_job_name}"
 
     # check if the switch is on
     switch_status=$(eval echo "$"$global_switch_name)
