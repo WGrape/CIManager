@@ -28,10 +28,23 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
+            # 1
             printf "================ Start to Boot CIManager ================\n"
             git clone https://github.com/wgrape/CIManager.git
             cp -an ./CIManager/.pipeline ./
             rm -rf ./CIManager
             cd .pipeline
-            printf "================ Boot CIManager Stopped ================\n\n"
+            printf "================ End Boot ================\n\n"
+            printf "================ Debug Start ================\n\n"
+            show_env(){
+                print_step "show_env: ${job_name}"
+                echo "1. cat /proc/version="$(cat /proc/version)
+                echo "2. CI_BUILDS_DIR=${CI_BUILDS_DIR}"
+                echo "3. pwd="$(pwd)
+                echo "4. ls="$(ls -a)
+            }
+            show_env
+            printf "================ End Debug ================\n\n"
+            print_ok ">>>>>>>>>>> Start Pipeline\n\n"
             bash start.sh
+            print_ok "\n\n<<<<<<<<<<< End Pipeline"

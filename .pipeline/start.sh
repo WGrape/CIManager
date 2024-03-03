@@ -27,8 +27,6 @@ job_queue=(
     "cd.stage_monitor.job_health_check"
 )
 
-print_ok ">>>>>>>>>>> start pipeline\n\n"
-
 for job_name in "${job_queue[@]}"; do
     global_job_name=${job_name//./_}
     global_job_path="${BASE_PATH}/.pipeline/${job_name//./\/}.sh"
@@ -52,7 +50,8 @@ for job_name in "${job_queue[@]}"; do
 
     # run job
     if ! run_job; then
-        print_error "pipline exit, run_job failed: ${global_job_path} failed\n"
+        print_error "pipline exit, run_job failed: ${global_job_name}\n"
+        send_failure_notice
         exit 1
     fi
 
@@ -62,5 +61,3 @@ for job_name in "${job_queue[@]}"; do
         exit 1
     fi
 done
-
-print_ok "\n\n<<<<<<<<<<< end pipeline"

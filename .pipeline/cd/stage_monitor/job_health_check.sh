@@ -14,8 +14,6 @@ if [ "${global_trigger_cmd}" != "" ]; then
         fi
 
         if [ $i -ge 10 ]; then
-            FAILURE_REASON="Failed to run health_check.sh: res not success, real=${res}"
-            send_failure_notice
             exit 1
         fi
 
