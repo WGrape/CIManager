@@ -31,7 +31,8 @@ for job_name in "${job_queue[@]}"; do
     global_job_name=${job_name//./_}
     global_job_path="${BASE_PATH}/.pipeline/${job_name//./\/}.sh"
     global_switch_name="${global_job_name^^}_SWITCH" # ^^ equals upper()
-    global_trigger_cmd="${global_job_name^^}_TRIGGER_CMD"
+    global_trigger_cmd_name="${global_job_name^^}_TRIGGER_CMD"
+    global_trigger_cmd=${!global_trigger_cmd_name}
 
     print_phase "handle job: ${global_job_name}"
 
