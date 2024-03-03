@@ -43,5 +43,6 @@ jobs:
             show_env
             printf "================ End Debug ================\n\n"
             printf "\e[36m>>>>>>>>>>> Start Pipeline\e[0m\n\n"
-            sudo bash start.sh
-            printf "\n\n\e[36m<<<<<<<<<<< End Pipeline\e[0m"
+            # you can run sudo with the -E/--preserve-env switch, sudo -E/--preserve-env ..., which retains environment variables.
+            sudo --preserve-env bash start.sh
+            printf "\e[36m<<<<<<<<<<< End Pipeline\e[0m"
