@@ -36,7 +36,7 @@ for job_name in "${job_queue[@]}"; do
     print_phase "handle job: ${global_job_name}"
 
     # check if the switch is on
-    switch_status=$(eval echo "$"$global_switch_name)
+    switch_status=${!global_switch_name}
     if [ "${switch_status}" != "ON" ]; then
         print_warn "job is skipped, due to the switch(${global_switch_name}=${switch_status}) is off\n\n"
         continue
