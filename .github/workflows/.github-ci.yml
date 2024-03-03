@@ -1,8 +1,9 @@
-name: CICD
+name: github-ci
 on:
   push:
     branches:
       - main
+      - test
 
 jobs:
   CIManager:
