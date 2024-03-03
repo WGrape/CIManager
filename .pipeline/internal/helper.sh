@@ -33,13 +33,13 @@ print_step() {
 
 # before job
 before_job() {
-    print_step "before the job: ${job_name}"
+    print_step "before the job: ${global_job_name}"
     return 0
 }
 
 run_job() {
-    print_step "running the job: ${job_name}"
-    if ! bash "${global_job_path}"; then
+    print_step "running the job: ${global_job_name}"
+    if ! source "${global_job_path}"; then
         return 1
     fi
     return 0
@@ -47,7 +47,7 @@ run_job() {
 
 # after job
 after_job() {
-    print_step "after the job: ${job_name}"
+    print_step "after the job: ${global_job_name}"
     return 0
 }
 

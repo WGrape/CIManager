@@ -1,9 +1,15 @@
 #!/bin/sh
 
 # complete the installation of all dependencies
-cmd="apt-get update -y && apt-get install curl -y"
-echo "1. ${cmd}"
-eval $cmd
+echo "1. change apt resource"
+mv /etc/apt/sources.list /etc/apt/sources.list.bak \
+    && echo 'deb http://mirrors.163.com/debian/ stretch main non-free contrib' > /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/debian/ stretch-updates main non-free contrib' >> /etc/apt/sources.list \
+    && echo 'deb http://mirrors.163.com/debian-security/ stretch/updates main non-free contrib' >> /etc/apt/sources.list \
+    && apt-get update -y
+
+echo "2. install curl"
+apt-get install curl -y
 
 # if trigger cmd exists, then execute it.
 if [ "${global_trigger_cmd}" != "" ]; then
