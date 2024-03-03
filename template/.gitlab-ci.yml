@@ -55,5 +55,16 @@ CIManager:
       cp -an ./CIManager/.pipeline ./
       rm -rf ./CIManager
       cd .pipeline
-      printf "================ Boot CIManager Stopped ================\n\n"
+      printf "================ End Boot ================\n\n"
+      printf "================ Debug Start ================\n\n"
+      show_env(){
+          echo "1. cat /proc/version="$(cat /proc/version)
+          echo "2. CI_BUILDS_DIR=${CI_BUILDS_DIR}"
+          echo "3. pwd="$(pwd)
+          echo "4. ls="$(ls -a)
+      }
+      show_env
+      printf "================ End Debug ================\n\n"
+      print_ok ">>>>>>>>>>> Start Pipeline\n\n"
       bash start.sh
+      print_ok "\n\n<<<<<<<<<<< End Pipeline"
