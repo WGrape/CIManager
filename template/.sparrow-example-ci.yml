@@ -29,7 +29,7 @@ jobs:
       CI_STAGE_BUILD_JOB_LOCAL_BUILD_SWITCH: "ON"
       CI_STAGE_BUILD_JOB_LOCAL_BUILD_CMD: |
         env="test"
-        docker exec -it sparrow_container_${env}_go bash -c "cd /var/data/go/mapserver && go mod tidy && nohup go run mapserver.go -f etc/application.${env}.yaml &"
+        docker exec -i sparrow_container_${env}_go bash -c "cd /var/data/go/mapserver && go mod tidy && nohup go run mapserver.go -f etc/application.${env}.yaml &"
       CI_STAGE_BUILD_JOB_APIDOC_GEN_SWITCH: "ON"
       CI_STAGE_BUILD_JOB_APIDOC_GEN_CMD: ""
       # ========================= CD =========================
