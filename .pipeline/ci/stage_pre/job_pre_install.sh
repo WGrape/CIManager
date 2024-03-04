@@ -13,7 +13,7 @@ apt-get install curl -y
 
 echo "3. install docker and docker-compose"
 curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-curl -L https://github.com/docker/compose/releases/download/1.3.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.27.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 which docker
 which docker-compose
