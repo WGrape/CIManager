@@ -15,7 +15,7 @@ if [ "${global_job_cmd}" != "" ]; then
         fi
 
         if [ $i -ge 10 ]; then
-            echo "health check failed: res=${res}"
+            echo "health check failed: res=${res}, except=${CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD_RES}"
             exit 1
         fi
 
