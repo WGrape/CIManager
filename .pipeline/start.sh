@@ -37,7 +37,7 @@ job_queue=(
     "cd.stage_monitor.job_api_test"
     "cd.stage_monitor.job_health_check"
 )
-if [ "$1" == "" ]; then
+if [ "$1" != "" ]; then
     job_queue=($1)
 fi
 
