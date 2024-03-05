@@ -37,6 +37,9 @@ job_queue=(
     "cd.stage_monitor.job_api_test"
     "cd.stage_monitor.job_health_check"
 )
+if [ "$1" == "" ]; then
+    job_queue=($1)
+fi
 
 for job_name in "${job_queue[@]}"; do
     global_job_name=${job_name//./_}
