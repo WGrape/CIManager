@@ -15,7 +15,7 @@ if [ "${global_job_cmd}" != "" ]; then
         fi
 
         if [ $i -ge 10 ]; then
-            echo "health check failed"
+            echo "health check failed: res=${res}"
             exit 1
         fi
 
