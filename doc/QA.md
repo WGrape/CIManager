@@ -20,3 +20,15 @@ mv /etc/apt/sources.list /etc/apt/sources.list.bak \
     && apt-get update -y
 apt-get install curl -y
 ```
+
+## 3、docker exec -it 不显示输出
+
+如果使用```&&```的话，把```&&```符合修改为```;```这样每一步都会有输出，错误也会有显示
+
+```bash
+docker exec -i sparrow_container_test_go bash -c "cd /var/data/go/server && go mod download && go mod tidy && go build -o serbin ."
+
+docker exec -i sparrow_container_test_go bash -c "cd /var/data/go/server ; go mod download ; go mod tidy ; go build -o serbin ."
+
+```
+

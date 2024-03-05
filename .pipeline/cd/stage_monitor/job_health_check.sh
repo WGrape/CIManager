@@ -7,13 +7,15 @@ if [ "${global_job_cmd}" != "" ]; then
     do
         ((i++))
 
-        res=$(eval $global_job_cmd)
+        # res=$(eval $global_job_cmd)
+        res=`eval $global_job_cmd`
         if [ "${res}" == "${CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD_RES}" ]; then
             echo "health check success"
             break
         fi
 
         if [ $i -ge 10 ]; then
+            echo "health check failed"
             exit 1
         fi
 
