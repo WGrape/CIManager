@@ -1,0 +1,83 @@
+name: github-ci
+on:
+  push:
+    branches:
+      - main
+      - test
+
+env:
+  # ========================= System =========================
+  # ========================= Project =========================
+  PROJECT_CURRENT_BRANCH: "test"
+  PROJECT_CURRENT_ENV: "test"
+  # ========================= CI =========================
+  # [stage] = pre
+  CI_STAGE_PRE_JOB_PRE_CHECK_SWITCH: "ON"
+  CI_STAGE_PRE_JOB_PRE_CHECK_CMD: "docker-compose --version"
+  CI_STAGE_PRE_JOB_PRE_INSTALL_SWITCH: "ON"
+  CI_STAGE_PRE_JOB_PRE_INSTALL_CMD: |
+    # 先启动Go环境
+    cd sparrow && bash _install.sh && bash ./sparrow startone go && cd ..
+    # 把本项目拷贝到Go环境中
+    mkdir -p ./sparrow/go/data/mapserver
+    rsync -av --exclude='sparrow/' --exclude='.git/' --exclude='.github/' --exclude='README.md' --exclude='.gitignore' --exclude='logs/' ./ "./sparrow/go/data/mapserver"
+  # [stage] = test
+  CI_STAGE_TEST_JOB_UNIT_TEST_SWITCH: "ON"
+  CI_STAGE_TEST_JOB_UNIT_TEST_CMD: "cd pkg/util && go test -v . && cd ../../"
+  CI_STAGE_TEST_JOB_CHECK_CODE_SWITCH: "ON"
+  CI_STAGE_TEST_JOB_CHECK_CODE_CMD: ""
+  # [stage] = build
+  CI_STAGE_BUILD_JOB_LOCAL_BUILD_SWITCH: "ON"
+  CI_STAGE_BUILD_JOB_LOCAL_BUILD_CMD: |
+    # 开始编译Go环境中的本项目
+    docker exec -i sparrow_container_${PROJECT_CURRENT_ENV}_go bash -c "cd /var/data/go/mapserver; go mod download; go mod tidy; go build -buildvcs=false -o mapbin .; nohup ./mapbin -f etc/application.${PROJECT_CURRENT_ENV}.yaml > nohup.$(date +"%Y%m%d").log &"
+    docker exec -i sparrow_container_${PROJECT_CURRENT_ENV}_go bash -c "curl -s -X GET '127.0.0.1:2200/ping'"
+    # 成功编译之后把Go环境中的二进制文件拷贝到本项目目录下
+    cp ./sparrow/go/data/mapserver/mapbin ./mapbin
+  CI_STAGE_BUILD_JOB_APIDOC_GEN_SWITCH: "ON"
+  CI_STAGE_BUILD_JOB_APIDOC_GEN_CMD: ""
+  # ========================= CD =========================
+  # [stage] = deploy
+  CD_STAGE_DEPLOY_JOB_SSH_SWITCH: "ON"
+  CD_STAGE_DEPLOY_JOB_SSH_CMD: ""
+  CD_STAGE_DEPLOY_JOB_LAUNCH_SWITCH: "ON"
+  CD_STAGE_DEPLOY_JOB_LAUNCH_CMD: |
+    base_path="/root/dockerbase/test/sparrow/go/data/mapserver/"
+    cd $base_path && chmod +x ./mapbin
+    docker exec -i sparrow_container_${PROJECT_CURRENT_ENV}_go bash -c 'pid=$(ps aux | grep "./mapbin -f etc/application." | grep -v grep | awk "{print \$2}"); echo $pid; kill -q $pid;'
+    docker exec -i sparrow_container_${PROJECT_CURRENT_ENV}_go bash -c "cd /var/data/go/mapserver/ && nohup ./mapbin -f etc/application.${PROJECT_CURRENT_ENV}.yaml >> nohup.$(date +"%Y%m%d").log &"
+    docker exec -i sparrow_container_${PROJECT_CURRENT_ENV}_go bash -c "curl -s -X GET '127.0.0.1:2200/ping'"
+  # [stage] = monitor
+  CD_STAGE_MONITOR_JOB_API_TEST_SWITCH: "ON"
+  CD_STAGE_MONITOR_JOB_API_TEST_CMD: "curl -s -X GET '127.0.0.1:2200/ping'"
+  CD_STAGE_MONITOR_JOB_HEALTH_CHECK_SWITCH: "ON"
+  CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD: "curl -s -X GET '127.0.0.1:2200/ping'"
+  CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD_RES: "ok"
+
+jobs:
+  CIManager:
+    runs-on: ubuntu-latest
+    steps:
+      # 获取CIManager并连接, 连接成功后开始执行pipeline
+      - uses: actions/checkout@v1
+      - run: |
+          git clone https://github.com/wgrape/CIManager.git && bash ./CIManager/connect.sh 
+          sudo --preserve-env bash .pipeline/start.sh # you can run sudo with the -E/--preserve-env switch, sudo -E/--preserve-env ..., which retains environment variables.
+
+      # 上传至服务器
+      - uses: appleboy/scp-action@master
+        with:
+          host: xxx.xxx.xxx.xxx
+          username: username
+          password: password
+          source: "./mapbin,./etc/application.test.yaml,./.pipeline"
+          target: "/root/dockerbase/test/sparrow/go/data/mapserver/"
+
+      # 运行服务器上的二进制文件
+      - uses: garygrossgarten/github-action-ssh@release # https://github.com/appleboy/scp-action/tree/master
+        with:
+          command: cd /root/dockerbase/test/sparrow/go/data/mapserver/; bash ./.pipeline/start.sh "cd.stage_deploy.job_launch"
+          host: xxx.xxx.xxx.xxx
+          username: username
+          password: password
+          privateKey: ${{ secrets.PRIVATE_KEY}}
