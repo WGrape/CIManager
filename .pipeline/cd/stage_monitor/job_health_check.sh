@@ -9,6 +9,7 @@ if [ "${global_job_cmd}" != "" ]; then
 
         # res=$(eval $global_job_cmd)
         # res=`eval $global_job_cmd`
+        # the big confound: the res("ok") and the except(ok), so remove the symbol "
         res=$(eval $global_job_cmd | sed 's/^"\(.*\)"$/\1/')
         if [ "${res}" == "${CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD_RES}" ]; then
             echo "health check success"
