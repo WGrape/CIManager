@@ -31,8 +31,8 @@ job_queue=(
     "ci.stage_build.job_apidoc_gen"
     # ========================= CD =========================
     # [stage] = deploy
-    # "cd.stage_deploy.job_pull_artifact"
     "cd.stage_deploy.job_ssh"
+    "cd.stage_deploy.job_launch"
     # [stage] = monitor
     "cd.stage_monitor.job_api_test"
     "cd.stage_monitor.job_health_check"
