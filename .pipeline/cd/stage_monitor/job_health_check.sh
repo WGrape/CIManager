@@ -8,7 +8,8 @@ if [ "${global_job_cmd}" != "" ]; then
         ((i++))
 
         # res=$(eval $global_job_cmd)
-        res=`eval $global_job_cmd`
+        # res=`eval $global_job_cmd`
+        res=$(eval $global_job_cmd | sed 's/^"\(.*\)"$/\1/')
         if [ "${res}" == "${CD_STAGE_MONITOR_JOB_HEALTH_CHECK_CMD_RES}" ]; then
             echo "health check success"
             break
