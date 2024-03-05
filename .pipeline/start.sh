@@ -1,9 +1,20 @@
 #!/bin/sh
 
-CUR_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")"; pwd)
+CUR_PATH=$(cd "$(dirname "$0")" && pwd)
 cd $CUR_PATH && cd ../
 BASE_PATH=$(pwd)
 . $BASE_PATH/.pipeline/internal/helper.sh
+
+printf "================ Debug Start ================\n\n"
+show_env(){
+  echo "1. cat /proc/version="$(cat /proc/version)
+  echo "2. pwd="$(pwd)
+  echo "3. ls="$(ls -a)
+}
+show_env
+printf "================ End Debug ================\n\n"
+
+printf "\e[36m>>>>>>>>>>> Start Pipeline\e[0m\n\n"
 
 job_queue=(
     # ========================= CI =========================
@@ -62,3 +73,5 @@ for job_name in "${job_queue[@]}"; do
         exit 1
     fi
 done
+
+printf "\e[36m<<<<<<<<<<< End Pipeline\e[0m"
